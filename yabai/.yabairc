@@ -1,0 +1,60 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# default layout (can be bsp, stack or float)
+yabai -m config layout bsp
+
+# new window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# padding set to 12px
+yabai -m config top_padding 12
+yabai -m config bottom_padding 12
+yabai -m config left_padding 12
+yabai -m config right_padding 12
+yabai -m config window_gap 12
+
+# -- mouse settings --
+
+# center mouse on window with focus
+yabai -m config mouse_follows_focus on
+
+# modifier for clicking and dragging with mouse
+yabai -m config mouse_modifier cmd
+# set modifier + left-click drag to move window
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window
+yabai -m config mouse_action2 resize
+
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap
+
+# spaces alias
+yabai -m space 1 --label txt
+yabai -m space 2 --label www
+yabai -m space 3 --label sys
+yabai -m space 4 --label msg
+yabai -m space 5 --label doc
+
+# disable specific apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Preferences$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Hubstaff$" manage=off
+yabai -m rule --add app="^QuickTime Player$" manage=off
+
+# assign apps to specific spaces
+yabai -m rule --add app="^iTerm$" space=txt
+yabai -m rule --add app="^kitty$" space=txt
+yabai -m rule --add app="^Terminal$" space=txt
+yabai -m rule --add app="^Google Chrome$" space=www
+yabai -m rule --add app="^Safari$" space=www
+yabai -m rule --add app="^DBngin$" space=sys
+yabai -m rule --add app="^TablePlus$" space=sys
+yabai -m rule --add app="^Hubstaff$" space=sys
+yabai -m rule --add app="^Microsoft Teams$" space=msg
+yabai -m rule --add app="^Skype$" space=msg
+yabai -m rule --add app="^WhatsApp$" space=msg
+yabai -m rule --add app="^Microsoft Word$" space=doc
+yabai -m rule --add app="^Microsoft Excel$" space=doc
+yabai -m rule --add app="^Microsoft Powertpoint$" space=doc
