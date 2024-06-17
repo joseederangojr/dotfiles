@@ -31,7 +31,7 @@ return {
         typescript = { { 'prettierd', 'prettier' } },
         javascriptreact = { { 'prettierd', 'prettier' } },
         typescriptreact = { { 'prettierd', 'prettier' } },
-        json = { { 'prettierd', 'prettier' } },
+        json = { { 'jq' } },
         markdown = { { 'prettierd', 'prettier' } },
         html = { 'htmlbeautifier' },
         bash = { 'beautysh' },

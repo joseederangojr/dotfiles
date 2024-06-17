@@ -96,9 +96,13 @@ export PATH="$HOME/Library/Application Support/Herd/bin/":$PATH
 export HERD_PHP_74_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/74/"
 export PATH=$PATH:/usr/local/Cellar/mysql-client/8.3.0/bin
 
+# php artisan
+alias art='php artisan'
+
 # scripts
 bindkey -s ^f "tmux-sessionizer\n"
 
+# fzf
 export FZF_CTRL_T_OPTS="
   --walker-skip vendor,.git,node_modules,target
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
