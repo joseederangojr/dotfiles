@@ -8,7 +8,22 @@ return {
         -- ...
       }
 
-      vim.cmd 'colorscheme github_light'
+      vim.cmd 'colorscheme github_dark_dimmed'
+
+      local detect_colorscheme = function()
+        vim.fn.jobstart('', {
+          on_stdout = function()
+            vim.cmd 'colorscheme github_dark_dimmed'
+          end,
+          on_stderr = function()
+            vim.cmd 'colorscheme github_light'
+          end,
+        })
+      end
+
+      detect_colorscheme()
+
+      vim.keymap.set('n', '<leader>tt', detect_colorscheme, { desc = '[T]oggle colorscheme [t]heme' })
     end,
   },
 }
