@@ -2,14 +2,15 @@
 # Check for develop and similarly named branches
 function git_develop_branch() {
   command git rev-parse --git-dir &>/dev/null || return
-  local branch
-  for branch in dev devel develop development; do
-    if command git show-ref -q --verify refs/heads/$branch; then
-      echo $branch
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{dev,devel,develop,development}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
       return 0
     fi
   done
 
+  # If no main branch was found, fall back to master but return error
   echo develop
   return 1
 }
@@ -70,11 +71,16 @@ alias grv='git remote -v'
 alias ga='git add'
 alias gaa='git add --all'
 alias gcm='git commit -m'
+alias gf='git fetch'
+alias gfo='git fetch origin'
+alias gfb='git fetch $(git_current_branch)'
+alias gfd='git fetch $(git_develop_branch)'
+alias gfm='git fetch $(git_main_branch)'
 
-
-
-
-
+# tmux alias
+alias tx='tmux'
+alias tkls='tmux kill-server'
+alias td='tmux detach'
 
 # Herd injected NVM configuration
 export NVM_DIR="$HOME/Library/Application Support/Herd/config/nvm"
@@ -117,3 +123,5 @@ export FZF_CTRL_R_OPTS="
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
+
+export ERGO_DOMAIN=''

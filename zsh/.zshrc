@@ -101,3 +101,28 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export LANG=en_US.UTF-8
+
+
+# Herd injected PHP binary.
+export PATH="/Users/joseederangojr/Library/Application Support/Herd/bin/":$PATH
+
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/joseederangojr/Library/Application Support/Herd/config/php/83/"
+
+
+# Herd injected PHP 7.4 configuration.
+export HERD_PHP_74_INI_SCAN_DIR="/Users/joseederangojr/Library/Application Support/Herd/config/php/74/"
+
+
+# Herd injected PHP 8.1 configuration.
+export HERD_PHP_81_INI_SCAN_DIR="/Users/joseederangojr/Library/Application Support/Herd/config/php/81/"
+eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/joseederangojr/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

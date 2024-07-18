@@ -48,6 +48,7 @@ yabai -m rule --add app="^iTerm$" space=txt
 yabai -m rule --add app="^kitty$" space=txt
 yabai -m rule --add app="^Terminal$" space=txt
 yabai -m rule --add app="^Google Chrome$" space=www
+yabai -m rule --add app="^Orion$" space=www
 yabai -m rule --add app="^Safari$" space=www
 yabai -m rule --add app="^DBngin$" space=sys
 yabai -m rule --add app="^TablePlus$" space=sys
@@ -57,4 +58,4 @@ yabai -m rule --add app="^Skype$" space=msg
 yabai -m rule --add app="^WhatsApp$" space=msg
 yabai -m rule --add app="^Microsoft Word$" space=doc
 yabai -m rule --add app="^Microsoft Excel$" space=doc
-yabai -m rule --add app="^Microsoft Powertpoint$" space=doc
+yabai -m rule --add app="^Microsoft Powerpoint$" space=doc
