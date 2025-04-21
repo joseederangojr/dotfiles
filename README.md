@@ -1,1 +1,3 @@
-My dotfiles shamelessly taken from ThePrimeagen and Jess Archer (laracast)
+# My dotfiles
+
+> This is my personal dotfiles. Use it with caution it my break you configs
