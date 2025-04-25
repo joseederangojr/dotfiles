@@ -88,12 +88,14 @@ alias art='php artisan'
 # podman docker
 alias docker=podman
 
-# lsd
-alias ls=lsd
-
 # pnpm
-alias pn=pnpm
+alias npm=pnpm
+alias npx='pnpm dlx'
 
+# lsd
+alias ls='lsd -1'
 
 # scripts
 bindkey -s ^f "tmux-sessionizer\n"
+
+

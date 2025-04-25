@@ -1,19 +1,19 @@
 return {
   { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
+    'joseederangojr/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim',   config = true }, -- NOTE: Must be loaded before dependants
+      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',         opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim',         opts = {} },
+      { 'folke/neodev.nvim', opts = {} },
       { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
     },
     config = function()
@@ -208,6 +208,8 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      servers.laravel_ls = {}
+
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
@@ -219,6 +221,9 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+        ['laravel_ls'] = function()
+          vim.lsp.enable 'laravel_ls'
+        end,
       }
     end,
   },

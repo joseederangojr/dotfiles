@@ -6,11 +6,12 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     init = function()
       require('catppuccin').setup {
+        no_italic = true,
         integrations = {
           cmp = true,
           gitsigns = true,
           treesitter = true,
-          notify = false,
+          notify = true,
         },
       }
 

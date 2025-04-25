@@ -4,7 +4,7 @@ return {
     init = function()
       require('dotenv').setup {
         enable_on_load = true,
-        verbose = true,
+        verbose = false,
         file_name = '.env.db',
       }
     end,

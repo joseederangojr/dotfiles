@@ -113,11 +113,6 @@ export XDG_HOME_CONFIG="$HOME/.config"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # pnpm
 export PNPM_HOME="/home/oze/.local/share/pnpm"
 case ":$PATH:" in
@@ -129,3 +124,14 @@ esac
 
 # Local binaries
 export PATH="$PATH:$HOME/.local/bin"
+
+# Go
+export GOPATH=$HOME/go
+export PATH="$PATH:$GOPATH/bin"
+
+# Homebrew
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+export PATH="$HOME/.pgenv/bin:$HOME/.pgenv/pgsql/bin:$PATH"
+eval "$(~/.local/bin/mise activate zsh)"

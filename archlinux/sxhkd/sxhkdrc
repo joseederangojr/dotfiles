@@ -171,3 +171,9 @@ super + ctrl + b
 	~/.config/sxhkd/scripts/open.sh "beekeeper-studio" "beekeeper-studio"
 
 
+# beekeeper
+super + ctrl + r 
+	~/.config/sxhkd/scripts/open.sh "ViberPC" "viber"
+
+
+

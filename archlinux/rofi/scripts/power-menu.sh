@@ -1,6 +1,6 @@
 #! /bin/sh
 
-chosen=$(printf "  Power Off\n  Restart\n  Lock\n  Sign Out" | rofi -dmenu -i -theme-str '@import "simple-tokyonight.rasi"')
+chosen=$(printf "  Power Off\n  Restart\n  Lock\n  Sign Out" | rofi -dmenu -i -theme-str '@import "~/.config/rofi/catppuccin-default.rasi"')
 
 case "$chosen" in
 	"  Power Off") systemctl poweroff ;;

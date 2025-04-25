@@ -22,14 +22,9 @@ bspc rule -a Firefox desktop='www' follow=on focus=on
 bspc rule -a vlc desktop='vid' follow=on focus=on
 bspc rule -a thunar desktop='sys' follow=on focus=on
 bspc rule -a discord desktop='msg' follow=on focus=on
-bspc rule -a libreoffice desktop='doc' follow=on focus=on
-bspc rule -a libreoffice-startcenter desktop='doc' follow=on focus=on
-bspc rule -a libreoffice-base desktop='doc' follow=on focus=on
-bspc rule -a libreoffice-calc desktop='doc' follow=on focus=on
-bspc rule -a libreoffice-draw desktop='doc' follow=on focus=on
-bspc rule -a libreoffice-impress desktop='doc' follow=on focus=on
-bspc rule -a libreoffice-writer desktop='doc' follow=on focus=on
+bspc rule -a soffice desktop='doc' follow=on focus=on
 bspc rule -a beekeper-studio desktop='sys' follow=on focus=on
+bspc rule -a ViberPC desktop='msg' follow=on focus=on
 
 
 # Auto start
