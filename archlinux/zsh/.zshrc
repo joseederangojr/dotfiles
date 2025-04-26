@@ -133,5 +133,6 @@ export PATH="$PATH:$GOPATH/bin"
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
-export PATH="$HOME/.pgenv/bin:$HOME/.pgenv/pgsql/bin:$PATH"
+
+# Mise-en-place
 eval "$(~/.local/bin/mise activate zsh)"

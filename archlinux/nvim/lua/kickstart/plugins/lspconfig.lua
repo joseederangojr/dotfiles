@@ -1,6 +1,6 @@
 return {
   { -- LSP Configuration & Plugins
-    'joseederangojr/nvim-lspconfig',
+    'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -208,9 +208,25 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      servers.laravel_ls = {}
+      local util = require 'lspconfig.util'
+
+      -- vim.lsp.config('laravel_ls', {
+      --   cmd = { 'laravel-ls' },
+      --   filetypes = { 'php', 'blade' },
+      --   root_markers = { 'artisan' },
+      --   root_dir = util.root_pattern 'artisan',
+      -- })
+      --
+      -- vim.api.nvim_create_autocmd('FileType', {
+      --   pattern = { 'php', 'blade' },
+      --   callback = function()
+      --     vim.lsp.enable 'laravel_ls'
+      --   end,
+      -- })
 
       require('mason-lspconfig').setup {
+        ensure_installed = ensure_installed,
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -221,9 +237,6 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
-        ['laravel_ls'] = function()
-          vim.lsp.enable 'laravel_ls'
-        end,
       }
     end,
   },
