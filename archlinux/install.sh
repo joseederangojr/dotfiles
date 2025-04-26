@@ -52,8 +52,8 @@ ln -s $DOTFILES/rofi $HOME/.config/
 
 
 echo 'Linking starship';
-rm -rf $HOME/.config/starship
-ln -s $DOTFILES/starship $HOME/.config/
+rm -rf $HOME/.config/starship.toml
+ln -s $DOTFILES/starship/starship.toml $HOME/.config/
 
 
 echo 'Linking zsh';

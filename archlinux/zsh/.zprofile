@@ -85,11 +85,8 @@ alias td='tmux detach'
 # php artisan
 alias art='php artisan'
 
-# podman docker
-alias docker=podman
-
 # pnpm
-alias npm=pnpm
+alias npm='pnpm'
 alias npx='pnpm dlx'
 
 # lsd
