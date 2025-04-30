@@ -37,6 +37,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+-- These mappings control the size of splits (height/width)
+vim.keymap.set('n', '<C-M-h>', '<C-W>5<')
+vim.keymap.set('n', '<C-M-l>', '<C-W>5>')
+vim.keymap.set('n', '<C-M-j>', '<C-W>-')
+vim.keymap.set('n', '<C-M-k>', '<C-W>+')
+
 -- Reselect visual selection after indenting.
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
@@ -56,8 +62,8 @@ vim.keymap.set('v', 'p', '"_dP')
 -- vim.keymap.set('i', ',,', '<Esc>A,')
 
 -- Move lines up and down.
-vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
 vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
+vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
 vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
 vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")

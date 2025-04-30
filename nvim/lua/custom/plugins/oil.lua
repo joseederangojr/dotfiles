@@ -1,7 +1,9 @@
 return {
   'stevearc/oil.nvim',
   init = function()
-    vim.keymap.set('n', '<BS>', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+    vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+    vim.keymap.set('n', '_', '<CMD>Oil .<CR>', { desc = 'Open project root' })
+    local actions = require 'oil.actions'
     require('oil').setup {
       view_options = {
         show_hidden = true,
@@ -10,14 +12,10 @@ return {
         end,
       },
       delete_to_trash = true,
+      use_default_keymaps = false,
       keymaps = {
-        ['<C-v>'] = 'actions.select_vsplit',
-        ['<C-h>'] = 'actions.select_split',
-        ['t'] = 'actions.select_tab',
-        ['w'] = 'actions.preview',
-        ['q'] = 'actions.close',
-        ['r'] = 'actions.refresh',
-        ['<BS>'] = 'actions.parent',
+        ['<CR>'] = 'actions.select',
+        ['gx'] = 'actions.refresh',
       },
     }
   end,

@@ -109,6 +109,13 @@ return {
           { name = 'buffer' },
         },
       }
+
+      cmp.setup.filetype({ 'sql', 'mysql', 'psql' }, {
+        sources = {
+          { name = 'buffer' },
+          { name = 'vim-dadbod-completion' },
+        },
+      })
     end,
   },
 }

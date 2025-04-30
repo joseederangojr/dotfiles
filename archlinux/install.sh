@@ -1,24 +1,27 @@
 #!/usr/bin/env bash
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+PARENT_DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}")/../ && pwd)
+
+echo $PARENT_DOTFILES
 
 echo 'Linking kitty';
 rm -rf $HOME/.config/kitty
-ln -s $DOTFILES/kitty $HOME/.config/kitty
+ln -s $PARENT_DOTFILES/kitty $HOME/.config/kitty
 
 echo 'Linking tmux';
 rm -rf $HOME/.tmux.conf
-ln -s $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
+ln -s  $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
 
 echo 'Linking local binaries';
 mkdir -p $HOME/.local/bin
 rm -rf $HOME/.local/bin/tmux-sessionizer
-ln -s $DOTFILES/bin/tmux-sessionizer $HOME/.local/bin/tmux-sessionizer
+ln -s $PARENT_DOTFILES/bin/tmux-sessionizer $HOME/.local/bin/tmux-sessionizer
 
 
 echo 'Linking nvim';
 rm -rf $HOME/.config/nvim
-ln -s $DOTFILES/nvim $HOME/.config/
+ln -s $PARENT_DOTFILES/nvim $HOME/.config/
 
 
 echo 'Linking sxhkd';
@@ -58,5 +61,5 @@ ln -s $DOTFILES/starship/starship.toml $HOME/.config/
 
 echo 'Linking zsh';
 rm -rf $HOME/.zshrc $HOME/.zprofile
-ln -s $DOTFILES/zsh/.zshrc $HOME
-ln -s $DOTFILES/zsh/.zprofile $HOME
+ln -s $PARENT_DOTFILES/zsh/.zshrc $HOME
+ln -s $PARENT_DOTFILES/zsh/.zprofile $HOME

@@ -13,34 +13,36 @@ return {
       },
     },
     opts = {
-      notify_on_error = false,
+      notify_on_error = true,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 500,
+          timeout_ms = 750,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { { 'biome', 'prettierd', 'prettier' } },
-        typescript = { { 'biome', 'prettierd', 'prettier' } },
-        javascriptreact = { { 'biome', 'prettierd', 'prettier' } },
-        typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
-        json = { { 'biome', 'jq' } },
-        markdown = { { 'prettierd', 'prettier' } },
+        javascript = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'biome', 'jq', stop_after_first = true },
+        markdown = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'htmlbeautifier' },
         bash = { 'beautysh' },
         yaml = { 'yamlfix' },
         toml = { 'taplo' },
-        css = { { 'prettierd', 'prettier' } },
-        scss = { { 'prettierd', 'prettier' } },
-        php = { { 'prettierd', 'prettier' }, { './vendor/bin/pint', 'pint' } },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        scss = { 'prettierd', 'prettier', stop_after_first = true },
+        php = { 'prettierd', 'prettier', 'pint' },
         sql = { 'sql-formatter' },
       },
+      --@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer)
+      formatters = {},
     },
   },
 }

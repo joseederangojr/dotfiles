@@ -166,11 +166,11 @@ return {
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
+        -- But for many setups, the LSP (`ts_ls`) will work just fine
         html = {},
         tailwindcss = {},
         bashls = {},
-        tsserver = {},
+        ts_ls = {},
         intelephense = {},
         jsonls = {},
         biome = {},
@@ -208,7 +208,25 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      local util = require 'lspconfig.util'
+
+      -- vim.lsp.config('laravel_ls', {
+      --   cmd = { 'laravel-ls' },
+      --   filetypes = { 'php', 'blade' },
+      --   root_markers = { 'artisan' },
+      --   root_dir = util.root_pattern 'artisan',
+      -- })
+      --
+      -- vim.api.nvim_create_autocmd('FileType', {
+      --   pattern = { 'php', 'blade' },
+      --   callback = function()
+      --     vim.lsp.enable 'laravel_ls'
+      --   end,
+      -- })
+
       require('mason-lspconfig').setup {
+        ensure_installed = ensure_installed,
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
