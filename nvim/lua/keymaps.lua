@@ -69,6 +69,16 @@ vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
 vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
 
+-- Center after jump
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Fix line joins
+vim.keymap.set('n', 'J', 'mzJ`z')
+
+-- improve search
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

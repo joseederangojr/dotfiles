@@ -97,3 +97,4 @@ alias ls='lsd -1'
 bindkey -s ^f "tmux-sessionizer\n"
 
 
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
