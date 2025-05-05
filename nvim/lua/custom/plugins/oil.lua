@@ -1,5 +1,6 @@
 return {
   'stevearc/oil.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   init = function()
     vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
     vim.keymap.set('n', '_', '<CMD>Oil .<CR>', { desc = 'Open project root' })
@@ -16,6 +17,7 @@ return {
       keymaps = {
         ['<CR>'] = 'actions.select',
         ['gx'] = 'actions.refresh',
+        ['gs'] = { 'actions.change_sort', mode = 'n' },
       },
     }
   end,

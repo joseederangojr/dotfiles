@@ -7,6 +7,8 @@ return {
     init = function()
       require('catppuccin').setup {
         no_italic = true,
+        flavour = 'mocha',
+        transparent_background = true,
         integrations = {
           cmp = true,
           gitsigns = true,
@@ -15,7 +17,7 @@ return {
         },
       }
 
-      vim.cmd.colorscheme 'catppuccin-mocha'
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
 }

@@ -12,6 +12,10 @@ return {
         typescriptreact = { 'biomejs', 'eslint_d' },
         json = { 'biomejs', 'jsonlint' },
         php = { 'phpstan' },
+        sql = { 'sqruff' },
+        yaml = { 'yamllint' },
+        yml = { 'yamllint' },
+        dockerfile = { 'hadolint' },
       },
       ---@type table<string,table>
       linters = {

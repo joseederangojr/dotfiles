@@ -168,6 +168,7 @@ return {
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         html = {},
+        helm_ls = {},
         tailwindcss = {},
         bashls = {},
         ts_ls = {},
@@ -175,6 +176,8 @@ return {
         jsonls = {},
         biome = {},
         emmet_language_server = {},
+        yamlls = {},
+        jsonls = {},
         --
         lua_ls = {
           -- cmd = {...},
@@ -208,22 +211,6 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      local util = require 'lspconfig.util'
-
-      -- vim.lsp.config('laravel_ls', {
-      --   cmd = { 'laravel-ls' },
-      --   filetypes = { 'php', 'blade' },
-      --   root_markers = { 'artisan' },
-      --   root_dir = util.root_pattern 'artisan',
-      -- })
-      --
-      -- vim.api.nvim_create_autocmd('FileType', {
-      --   pattern = { 'php', 'blade' },
-      --   callback = function()
-      --     vim.lsp.enable 'laravel_ls'
-      --   end,
-      -- })
-
       require('mason-lspconfig').setup {
         ensure_installed = ensure_installed,
         automatic_installation = true,
@@ -236,6 +223,30 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
+        },
+        yamlls = function()
+          vim.lsp.on_attach(function(client, buffer)
+            if vim.bo[buffer].filetype == 'helm' then
+              vim.schedule(function()
+                vim.cmd 'LspStop ++force yamlls'
+              end)
+            end
+          end, 'yamlls')
+        end,
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require('schemastore').json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
         },
       }
     end,
