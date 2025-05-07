@@ -9,7 +9,8 @@ return {
       view_options = {
         show_hidden = true,
         is_always_hidden = function(name, bufnr)
-          return name == 'vendor' or name == 'node_modules' or name == '.git'
+          -- return name == 'vendor' or name == 'node_modules' or name == '.git'
+          return name == '.git'
         end,
       },
       delete_to_trash = true,
