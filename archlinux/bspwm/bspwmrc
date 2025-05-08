@@ -30,6 +30,6 @@ bspc rule -a ViberPC desktop='msg' follow=on focus=on
 # Auto start
 sxhkd &
 picom --config $HOME/.config/picom/picom.conf &
-nitrogen --set-zoom-fill --random $HOME/Dev/walls-catppuccin-mocha &
+nitrogen --set-zoom-fill --random $HOME/Pictures/wallpapers &
 dunst &
 polybar &

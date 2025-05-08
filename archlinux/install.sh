@@ -1,65 +1,149 @@
+# #!/usr/bin/env bash
+# DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+# PARENT_DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}")/../ && pwd)
+#
+# echo 'Linking kitty';
+# rm -rf $HOME/.config/kitty
+# ln -s $PARENT_DOTFILES/kitty $HOME/.config/kitty
+#
+# echo 'Linking tmux';
+# rm -rf $HOME/.tmux.conf
+# ln -s  $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
+#
+# echo 'Linking local binaries';
+# mkdir -p $HOME/.local/bin
+# rm -rf $HOME/.local/bin/tmux-sessionizer
+# ln -s $PARENT_DOTFILES/bin/tmux-sessionizer $HOME/.local/bin/tmux-sessionizer
+#
+#
+# echo 'Linking nvim';
+# rm -rf $HOME/.config/nvim
+# ln -s $PARENT_DOTFILES/nvim $HOME/.config/
+#
+#
+# echo 'Linking sxhkd';
+# rm -rf $HOME/.config/sxhkd
+# ln -s $DOTFILES/sxhkd $HOME/.config/
+#
+# echo 'Linking xinit';
+# rm -rf $HOME/.xinitrc
+# ln -s $DOTFILES/xinit/.xinitrc $HOME/.xinitrc
+#
+# echo 'Linking bspwm';
+# rm -rf $HOME/.config/bspwm
+# ln -s $DOTFILES/bspwm $HOME/.config/
+#
+#
+# echo 'Linking dunst';
+# rm -rf $HOME/.config/dunst
+# ln -s $DOTFILES/dunst $HOME/.config/
+#
+#
+# echo 'Linking picom';
+# rm -rf $HOME/.config/picom
+# ln -s $DOTFILES/picom $HOME/.config/
+#
+#
+# echo 'Linking polybar';
+# rm -rf $HOME/.config/polybar
+# ln -s $DOTFILES/polybar $HOME/.config/
+#
+#
+# echo 'Linking rofi';
+# rm -rf $HOME/.config/rofi
+# ln -s $DOTFILES/rofi $HOME/.config/
+#
+#
+# echo 'Linking starship';
+# rm -rf $HOME/.config/starship.toml
+# ln -s $DOTFILES/starship/starship.toml $HOME/.config/
+#
+#
+# echo 'Linking zsh';
+# rm -rf $HOME/.zshrc $HOME/.zprofile
+# ln -s $PARENT_DOTFILES/zsh/.zshrc $HOME
+# ln -s $PARENT_DOTFILES/zsh/.zprofile $HOME
+#
+#
+# echo 'Linking mise';
+# rm -rf $HOME/.config/mise
+# ln -s $DOTFILES/mise $HOME/.config/
+#
+#
+#
+#
+#
 #!/usr/bin/env bash
 
-DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
-PARENT_DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}")/../ && pwd)
+# Define color variables
+RESET='\033[0m'
+BOLD='\033[1m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+RED='\033[0;31m'
 
-echo $PARENT_DOTFILES
+DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+PARENT_DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)
 
-echo 'Linking kitty';
-rm -rf $HOME/.config/kitty
-ln -s $PARENT_DOTFILES/kitty $HOME/.config/kitty
+# Function to link files with color output
+link_file() {
+    local src=$1
+    local dest=$2
+    local label=$3
 
-echo 'Linking tmux';
-rm -rf $HOME/.tmux.conf
-ln -s  $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
+    echo -e "${GREEN}Linking ${BOLD}$label${RESET}..."
+    if [ -e "$dest" ]; then
+        rm -rf "$dest"
+    fi
+    ln -s "$src" "$dest"
+    echo -e "${CYAN}Linked ${label}${RESET} to ${dest}"
+}
 
-echo 'Linking local binaries';
+# Link kitty config
+link_file "$PARENT_DOTFILES/kitty" "$HOME/.config/kitty" "kitty"
+
+# Link tmux config
+link_file "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
+
+# Link local binaries
 mkdir -p $HOME/.local/bin
-rm -rf $HOME/.local/bin/tmux-sessionizer
-ln -s $PARENT_DOTFILES/bin/tmux-sessionizer $HOME/.local/bin/tmux-sessionizer
+link_file "$PARENT_DOTFILES/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer" "tmux-sessionizer"
 
+# Link nvim config
+link_file "$PARENT_DOTFILES/nvim" "$HOME/.config/nvim" "nvim"
 
-echo 'Linking nvim';
-rm -rf $HOME/.config/nvim
-ln -s $PARENT_DOTFILES/nvim $HOME/.config/
+# Link sxhkd config
+link_file "$DOTFILES/sxhkd" "$HOME/.config/sxhkd" "sxhkd"
 
+# Link xinit config
+link_file "$DOTFILES/xinit/.xinitrc" "$HOME/.xinitrc" "xinit"
 
-echo 'Linking sxhkd';
-rm -rf $HOME/.config/sxhkd
-ln -s $DOTFILES/sxhkd $HOME/.config/
+# Link bspwm config
+link_file "$DOTFILES/bspwm" "$HOME/.config/bspwm" "bspwm"
 
+# Link dunst config
+link_file "$DOTFILES/dunst" "$HOME/.config/dunst" "dunst"
 
-echo 'Linking bspwm';
-rm -rf $HOME/.config/bspwm
-ln -s $DOTFILES/bspwm $HOME/.config/
+# Link picom config
+link_file "$DOTFILES/picom" "$HOME/.config/picom" "picom"
 
+# Link polybar config
+link_file "$DOTFILES/polybar" "$HOME/.config/polybar" "polybar"
 
-echo 'Linking dunst';
-rm -rf $HOME/.config/dunst
-ln -s $DOTFILES/dunst $HOME/.config/
+# Link rofi config
+link_file "$DOTFILES/rofi" "$HOME/.config/rofi" "rofi"
 
+# Link starship prompt config
+link_file "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml" "starship"
 
-echo 'Linking picom';
-rm -rf $HOME/.config/picom
-ln -s $DOTFILES/picom $HOME/.config/
+# Link zsh config
+link_file "$PARENT_DOTFILES/zsh/.zshrc" "$HOME/.zshrc" "zshrc"
+link_file "$PARENT_DOTFILES/zsh/.zprofile" "$HOME/.zprofile" "zsh profile"
 
+# Link mise config
+link_file "$DOTFILES/mise" "$HOME/.config/mise" "mise"
 
-echo 'Linking polybar';
-rm -rf $HOME/.config/polybar
-ln -s $DOTFILES/polybar $HOME/.config/
+echo -e "${GREEN}${BOLD}All dotfiles linked successfully!${RESET}"
 
-
-echo 'Linking rofi';
-rm -rf $HOME/.config/rofi
-ln -s $DOTFILES/rofi $HOME/.config/
-
-
-echo 'Linking starship';
-rm -rf $HOME/.config/starship.toml
-ln -s $DOTFILES/starship/starship.toml $HOME/.config/
-
-
-echo 'Linking zsh';
-rm -rf $HOME/.zshrc $HOME/.zprofile
-ln -s $PARENT_DOTFILES/zsh/.zshrc $HOME
-ln -s $PARENT_DOTFILES/zsh/.zprofile $HOME

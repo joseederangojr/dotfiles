@@ -14,27 +14,29 @@
 --  config = function() ... end
 
 return {
-  { -- Useful plugin to show you pending keybinds.
+  {                     -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+      require('which-key').setup({
+        notify = false
+      })
 
       -- Document existing key chains
       require('which-key').register {
-        { '<leader>c', group = '[C]ode' },
+        { '<leader>c',  group = '[C]ode' },
         { '<leader>c_', hidden = true },
-        { '<leader>d', group = '[D]ocument' },
+        { '<leader>d',  group = '[D]ocument' },
         { '<leader>d_', hidden = true },
-        { '<leader>h', group = 'Git [H]unk' },
+        { '<leader>h',  group = 'Git [H]unk' },
         { '<leader>h_', hidden = true },
-        { '<leader>r', group = '[R]ename' },
+        { '<leader>r',  group = '[R]ename' },
         { '<leader>r_', hidden = true },
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s',  group = '[S]earch' },
         { '<leader>s_', hidden = true },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t',  group = '[T]oggle' },
         { '<leader>t_', hidden = true },
-        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w',  group = '[W]orkspace' },
         { '<leader>w_', hidden = true },
       }
       -- visual mode
