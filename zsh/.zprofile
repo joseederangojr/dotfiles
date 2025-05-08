@@ -98,3 +98,16 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+
+alias bat="bat --config-file=$HOME/.config/bat/config"

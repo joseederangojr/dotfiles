@@ -33,8 +33,8 @@ is_package_installed() {
 echo -e "${BLUE}Installing required packages using pacman...${RESET}"
 packages=(
     wget curl zsh git kitty neovim bspwm sxhkd polybar picom
-    dunst nitrogen bluez bluez-tools firefox wmctrl rofi dmenu
-    jq fzf tmux lsd btop fastfetch xclip
+    dunst nitrogen bluez bluez-tools firefox wmctrl rofi openssh
+    jq fzf tmux lsd btop fastfetch xclip ripgrep fd bat ly
 )
 
 for package in "${packages[@]}"; do
@@ -47,7 +47,8 @@ done
 # Install AUR packages using yay (AUR helper)
 echo -e "${BLUE}Installing additional packages from AUR using yay...${RESET}"
 aur_packages=(
-    google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted
+    google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted torrent-git
+    rtl8xxxu-dkms-git usb_modeswitch
 )
 
 for package in "${aur_packages[@]}"; do
@@ -119,9 +120,76 @@ else
     echo -e "${YELLOW}mise-en-place is already installed.${RESET}"
 fi
 
+
+# Install yazi if it's not already installed
+if ! command -v yazi >/dev/null 2>&1; then
+    echo -e "${CYAN}yazi is not installed, installing it...${RESET}"
+    sudo pacman -S yazi --noconfirm
+    echo -e "${CYAN}[yazi]: Installing yazi extensions...${RESET}"
+    
+    # Install necessary extensions for yazi 
+    yazi_dependencies=(ffmpeg file p7zip poppler zoxide resvg imagemagick)
+    for package in "${yazi_dependencies[@]}"; do
+        if ! is_package_installed "$package"; then
+            echo -e "${CYAN}Installing Yazi extension '$package'...${RESET}"
+            yay -S --noconfirm "$package"
+        else
+            echo -e "${YELLOW}Yazi extension '$package' is already installed.${RESET}"
+        fi
+    done 
+else
+    echo -e "${YELLOW}yazi is already installed.${RESET}"
+fi
+
+
+if [ ! -d $HOME/.config/yazi/plugins ]; then
+    mkdir -p ~/.config/yazi/plugins
+    git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi
+fi
+
+if ! command -v dmenu >/dev/null 2>&1; then
+    git clone https://github.com/joseederangojr/dmenu.git  $HOME/pkgs/dmenu
+    cd $HOME/pkgs/dmenu && sudo make clean install
+fi
+
+echo -e "${CYAN}Enabling ly dm${RESET}"
+sudo systemctl enable ly
+
+echo -e "${CYAN}Enabling wifi${RESET}"
+##### SETUP WIFI ######
+# Define vendor and product IDs for the Realtek RTL8188GU
+VENDOR_ID="0x0bda"
+PRODUCT_ID="0x1a2b"
+
+# Path to the usb_modeswitch configuration directory
+CONFIG_DIR="/etc/usb_modeswitch.d"
+
+# Configuration file name
+CONFIG_FILE="${CONFIG_DIR}/${VENDOR_ID}:${PRODUCT_ID}"
+
+# Check if the usb_modeswitch configuration file already exists
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Creating usb_modeswitch configuration for device ${VENDOR_ID}:${PRODUCT_ID}..."
+    sudo tee "$CONFIG_FILE" > /dev/null <<EOF
+# Realtek RTL8188GU - Switch from CD-ROM to Wi-Fi mode
+TargetVendor=$VENDOR_ID
+TargetProduct=$PRODUCT_ID
+MessageContent="555342431234567800000000000006c00000000000000000000000000000000"
+EOF
+    echo -e "${GREEN}Configuration file created at $CONFIG_FILE.${RESET}"
+else
+    echo -e "${YELLOW}Configuration file already exists at $CONFIG_FILE.${RESET}"
+fi
+
+# Switch the device mode
+echo -e "${CYAN}Switching device ${VENDOR_ID}:${PRODUCT_ID} to Wi-Fi mode...${RESET}"
+sudo usb_modeswitch -v $VENDOR_ID -p $PRODUCT_ID
+#######################
+
+
+echo -e "${CYAN}Enabling bluetooth${RESET}"
+sudo systemctl enable bluetooth
+
 # End of script
 echo -e "${GREEN}${BOLD}Setup complete. All packages and configurations are installed.${RESET}"
-
-
-
 
