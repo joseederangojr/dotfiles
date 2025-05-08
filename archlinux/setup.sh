@@ -152,43 +152,30 @@ if ! command -v dmenu >/dev/null 2>&1; then
     cd $HOME/pkgs/dmenu && sudo make clean install
 fi
 
-echo -e "${CYAN}Enabling ly dm${RESET}"
-sudo systemctl enable ly
 
-echo -e "${CYAN}Enabling wifi${RESET}"
-##### SETUP WIFI ######
-# Define vendor and product IDs for the Realtek RTL8188GU
-VENDOR_ID="0x0bda"
-PRODUCT_ID="0x1a2b"
-
-# Path to the usb_modeswitch configuration directory
-CONFIG_DIR="/etc/usb_modeswitch.d"
-
-# Configuration file name
-CONFIG_FILE="${CONFIG_DIR}/${VENDOR_ID}:${PRODUCT_ID}"
-
-# Check if the usb_modeswitch configuration file already exists
-if [ ! -f "$CONFIG_FILE" ]; then
-    echo "Creating usb_modeswitch configuration for device ${VENDOR_ID}:${PRODUCT_ID}..."
-    sudo tee "$CONFIG_FILE" > /dev/null <<EOF
-# Realtek RTL8188GU - Switch from CD-ROM to Wi-Fi mode
-TargetVendor=$VENDOR_ID
-TargetProduct=$PRODUCT_ID
-MessageContent="555342431234567800000000000006c00000000000000000000000000000000"
-EOF
-    echo -e "${GREEN}Configuration file created at $CONFIG_FILE.${RESET}"
-else
-    echo -e "${YELLOW}Configuration file already exists at $CONFIG_FILE.${RESET}"
+if ! command -v docker >/dev/null 2>&1; then
+    echo -e "${CYAN}Installing docker${RESET}"
+    sudo pacman -S docker --noconfirm
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+    docker run hello-world
 fi
 
-# Switch the device mode
-echo -e "${CYAN}Switching device ${VENDOR_ID}:${PRODUCT_ID} to Wi-Fi mode...${RESET}"
-sudo usb_modeswitch -v $VENDOR_ID -p $PRODUCT_ID
-#######################
+if ! systemctl is-active --quiet "bluetooth.service"; then
+    echo -e "${CYAN}Enabling bluetooth${RESET}"
+    sudo systemctl enable bluetooth 
+else
+    echo -e "${YELLOW}bluetooth already enabled${RESET}"
+fi
 
+if ! systemctl is-active --quiet "ly.service"; then
+    echo -e "${CYAN}Enabling ly${RESET}"
+    sudo systemctl enable ly
+else
+    echo -e "${YELLOW}ly already enabled${RESET}"
 
-echo -e "${CYAN}Enabling bluetooth${RESET}"
-sudo systemctl enable bluetooth
+fi
 
 # End of script
 echo -e "${GREEN}${BOLD}Setup complete. All packages and configurations are installed.${RESET}"
