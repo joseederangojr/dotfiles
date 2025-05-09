@@ -32,9 +32,10 @@ is_package_installed() {
 # Install essential packages using pacman (Arch Linux's package manager)
 echo -e "${BLUE}Installing required packages using pacman...${RESET}"
 packages=(
-    wget curl zsh git kitty neovim bspwm sxhkd polybar picom
+    wget curl zsh git kitty neovim bspwm sxhkd polybar picom brightnessctl
     dunst nitrogen bluez bluez-tools firefox wmctrl rofi openssh
-    jq fzf tmux lsd btop fastfetch xclip ripgrep fd bat ly
+    jq fzf tmux lsd btop fastfetch xclip ripgrep fd bat ly xdotool
+    xorg-xrandr playerctl
 )
 
 for package in "${packages[@]}"; do
@@ -48,7 +49,7 @@ done
 echo -e "${BLUE}Installing additional packages from AUR using yay...${RESET}"
 aur_packages=(
     google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted torrent-git
-    rtl8xxxu-dkms-git usb_modeswitch
+    maim screenkey slop
 )
 
 for package in "${aur_packages[@]}"; do

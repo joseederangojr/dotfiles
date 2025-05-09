@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + ctrl + t
-	~/.config/sxhkd/scripts/open.sh "kitty" "kitty" 
+	~/.config/sxhkd/scripts/open "kitty" "kitty" 
 
 # program launcher
 super  + space
@@ -102,25 +102,6 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-#
-# preselect
-#
-
-# preselect the direction
-# super + ctrl + {h,j,k,l}
-# 	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-# super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-# super + ctrl + space
-	bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-# super + ctrl + shift + space
-# 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
@@ -140,40 +121,54 @@ super + {Left,Down,Up,Right}
 
 # Google Chrome
 super + ctrl + g
-	~/.config/sxhkd/scripts/open.sh "Google Chrome" "google-chrome-stable"
+	~/.config/sxhkd/scripts/open "Google Chrome" "google-chrome-stable"
 
 # file manager
 super + ctrl + e
-	bspc desktop -f sys && kitty --hold xplr
-
-# discord
-super + ctrl + d
-	~/.config/sxhkd/scripts/open.sh "discord" "com.discordapp.Discord"
+	kitty --hold yazi
 
 
-# vlc
-super + ctrl + v
-	~/.config/sxhkd/scripts/open.sh "vlc" "vlc"
+# Audio
+@XF86AudioMute
+	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+@XF86AudioPlay
+	playerctl play-pause
+
+@XF86Audio{Next,Prev}
+	playerctl {next,previous}
+
+XF86Audio{Next,Prev}
+	playerctl position 1{+,-}
 
 
-# libreoffice
-super + ctrl + w
-	bspc desktop -f doc && ~/.config/sxhkd/scripts/open.sh "libreoffice-writer" "libreoffice --writer --nologo"
-
-super + ctrl + c
-	bspc desktop -f doc && ~/.config/sxhkd/scripts/open.sh "libreoffice-calc" "libreoffice --calc --nologo"
-
-super + ctrl + i
-	bspc desktop -f doc && ~/.config/sxhkd/scripts/open.sh "libreoffice-impress" "libreoffice --impress --nologo"
-
-# beekeeper
-super + ctrl + b
-	~/.config/sxhkd/scripts/open.sh "beekeeper-studio" "beekeeper-studio"
+@XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 
 
-# beekeeper
-super + ctrl + r 
-	~/.config/sxhkd/scripts/open.sh "ViberPC" "viber"
+# Screenshot
+# Selection screenshot
+Print
+	export FILEPATH="$HOME/Pictures/screenshots/$(date +%s).png" && \
+	maim -s $FILEPATH && \
+	xclip -selection clipboard -t image/png -i $FILEPATH && \
+	notify-send "Screenshot" "Saved to $FILEPATH and copied to clipboard"
+
+ # Active window Screenshot
+shift + Print
+	export FILEPATH="$HOME/Pictures/screenshots/$(date +%s).png" && \
+	maim -i $(xdotool getactivewindow) $FILEPATH && \
+	xclip -selection clipboard -t image/png -i $FILEPATH && \
+	notify-send "Screenshot" "Saved to $FILEPATH and copied to clipboard" 
+
+# Whole screen Screenshot
+ctrl + Print
+	export FILEPATH="$HOME/Pictures/screenshots/$(date +%s).png" && \
+	maim $FILEPATH && \
+	xclip -selection clipboard -t image/png -i $FILEPATH && \
+	notify-send "Screenshot" "Saved to $FILEPATH and copied to clipboard" 
 
 
-
+# Brightness
+@XF86MonBrightness{Up,Down}
+	~/.config/sxhkd/scripts/brightness HDMI-0 {+,-}1
