@@ -122,6 +122,20 @@ else
 fi
 
 
+if [ ! -d $HOME/.oh-my-zsh ]; then
+    echo -e "${CYAN}oh my zsh is not installed, installing it...${RESET}"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    export ZSH_PLUGIN_DIR="$HOME/.oh-my-zsh/plugins"
+    mkdir -p $ZSH_PLUGIN_DIR
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-completions $ZSH_PLUGIN_DIR/zsh-completions
+    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGIN_DIR/zsh-autosuggestions
+else
+
+    echo -e "${YELLOW}oh my zsh is already installed.${RESET}"
+fi
+
+
 # Install yazi if it's not already installed
 if ! command -v yazi >/dev/null 2>&1; then
     echo -e "${CYAN}yazi is not installed, installing it...${RESET}"
