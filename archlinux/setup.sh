@@ -35,7 +35,7 @@ packages=(
     wget curl zsh git kitty neovim bspwm sxhkd polybar picom brightnessctl
     dunst nitrogen bluez bluez-tools firefox wmctrl rofi openssh
     jq fzf tmux lsd btop fastfetch xclip ripgrep fd bat ly xdotool
-    xorg-xrandr playerctl
+    xorg-xrandr playerctl less
 )
 
 for package in "${packages[@]}"; do
@@ -49,7 +49,7 @@ done
 echo -e "${BLUE}Installing additional packages from AUR using yay...${RESET}"
 aur_packages=(
     google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted torrent-git
-    maim screenkey slop
+    maim screenkey slop 
 )
 
 for package in "${aur_packages[@]}"; do
@@ -138,14 +138,16 @@ if ! command -v yazi >/dev/null 2>&1; then
             echo -e "${YELLOW}Yazi extension '$package' is already installed.${RESET}"
         fi
     done 
-else
-    echo -e "${YELLOW}yazi is already installed.${RESET}"
-fi
 
+    echo -e "${CYAN}[yazi]: Installing yazi plugins...${RESET}"
+    ya pack -a yazi-rs/plugins:smart-paste
+    ya pack -a yazi-rs/plugins:smart-filter
+    ya pack -a yazi-rs/plugins:smart-enter
 
-if [ ! -d $HOME/.config/yazi/plugins ]; then
     mkdir -p ~/.config/yazi/plugins
     git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi
+else
+    echo -e "${YELLOW}yazi is already installed.${RESET}"
 fi
 
 if ! command -v dmenu >/dev/null 2>&1; then
