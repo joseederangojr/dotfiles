@@ -20,6 +20,7 @@ bspc rule -a kitty desktop='txt' follow=on focus=on
 bspc rule -a Google-chrome desktop='www' follow=on focus=on
 bspc rule -a Firefox desktop='www' follow=on focus=on
 bspc rule -a vlc desktop='vid' follow=on focus=on
+bspc rule -a yad-calendar state=floating focus=on
 
 # Auto start
 sxhkd &
