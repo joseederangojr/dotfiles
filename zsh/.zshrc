@@ -17,7 +17,7 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 
 
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git laravel zsh-completions zsh-autosuggestions)
+plugins=(git laravel zsh-autocomplete zsh-autosuggestions)
 autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zprofile
@@ -54,3 +54,6 @@ eval "$(~/.local/bin/mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+export QT_STYLE_OVERRIDE=gtk2

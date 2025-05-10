@@ -24,7 +24,7 @@ alias cd="z"
 alias reload="source $HOME/.zshrc"
 
 # scripts
-bindkey -s ^f $HOME/.local/bin/tmux-sessionizer\n
+bindkey -s ^f "$HOME/.local/bin/tmux-sessionizer\n"
 bindkey ^y autosuggest-accept
 bindkey '^ ' autosuggest-fetch
 bindkey "\el" forward-word

@@ -35,7 +35,7 @@ packages=(
     wget curl zsh git kitty neovim bspwm sxhkd polybar picom brightnessctl
     dunst nitrogen bluez bluez-tools firefox wmctrl rofi openssh
     jq fzf tmux lsd btop fastfetch xclip ripgrep fd bat ly xdotool
-    xorg-xrandr playerctl less
+    xorg-xrandr playerctl less lxappearance-gtk3
 )
 
 for package in "${packages[@]}"; do
@@ -49,7 +49,9 @@ done
 echo -e "${BLUE}Installing additional packages from AUR using yay...${RESET}"
 aur_packages=(
     google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted torrent-git
-    maim screenkey slop 
+    maim screenkey slop catppuccin-gtk-theme-mocha  papirus-icon-theme
+    papirus-folders-catppuccin-git inter-font 
+
 )
 
 for package in "${aur_packages[@]}"; do
@@ -121,14 +123,27 @@ else
     echo -e "${YELLOW}mise-en-place is already installed.${RESET}"
 fi
 
+if [ ! -d $HOME/.config/qt5ct ]; then
+    echo -e "${CYAN}qt theming is not installed, installing it...${RESET}"
+    mkdir -p $HOME/.config/qt5ct/colors/
+    mkdir -p $HOME/.config/qt6ct/colors/
+    curl -o $HOME/.config/qt5ct/colors/catppuccin-mocha-maroon.conf https://raw.githubusercontent.com/catppuccin/qt5ct/cb585307edebccf74b8ae8f66ea14f21e6666535/themes/catppuccin-mocha-maroon.conf
+    curl -o $HOME/.config/qt6ct/colors/catppuccin-mocha-maroon.conf https://raw.githubusercontent.com/catppuccin/qt5ct/cb585307edebccf74b8ae8f66ea14f21e6666535/themes/catppuccin-mocha-maroon.conf
+fi
+
+if  command -v papirus-folders >/dev/null 2>&1; then
+    echo -e "${CYAN}configuring gtk...${RESET}"
+    papirus-folders -C cat-mocha-maroon
+fi
+
 
 if [ ! -d $HOME/.oh-my-zsh ]; then
     echo -e "${CYAN}oh my zsh is not installed, installing it...${RESET}"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     export ZSH_PLUGIN_DIR="$HOME/.oh-my-zsh/plugins"
     mkdir -p $ZSH_PLUGIN_DIR
+    git clone https://github.com/zsh-users/zsh-autocomplete $ZSH_PLUGIN_DIR/zsh-autocomplete
     git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-completions $ZSH_PLUGIN_DIR/zsh-completions
     git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGIN_DIR/zsh-autosuggestions
 else
 
@@ -193,6 +208,9 @@ else
     echo -e "${YELLOW}ly already enabled${RESET}"
 
 fi
+
+
+
 
 # End of script
 echo -e "${GREEN}${BOLD}Setup complete. All packages and configurations are installed.${RESET}"
