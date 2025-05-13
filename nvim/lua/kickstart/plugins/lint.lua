@@ -5,6 +5,7 @@ return {
       -- Event to trigger linters
       events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
       linters_by_ft = {
+        lua = { 'selene' },
         markdown = { 'markdownlint' },
         javascript = { 'biomejs', 'eslint_d' },
         typescript = { 'biomejs', 'eslint_d' },

@@ -17,6 +17,10 @@ return {
       use_default_keymaps = false,
       keymaps = {
         ['<CR>'] = 'actions.select',
+        ['gv'] = { 'actions.select', opts = { vertical = true } },
+        ['gh'] = { 'actions.select', opts = { horizontal = true } },
+        ['gt'] = { 'actions.select', opts = { tab = true } },
+        ['gc'] = { 'actions.close', mode = 'n' },
         ['gx'] = 'actions.refresh',
         ['gs'] = { 'actions.change_sort', mode = 'n' },
       },

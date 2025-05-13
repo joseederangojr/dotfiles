@@ -173,7 +173,6 @@ return {
         bashls = {},
         ts_ls = {},
         intelephense = {},
-        jsonls = {},
         biome = {},
         emmet_language_server = {},
         yamlls = {},
@@ -207,13 +206,27 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'sqruff',
+        'prettierd',
+        'prettier',
+        'pint',
+        'taplo',
+        'yamlfmt',
+        'beautysh',
+        'biome',
+        'jq',
+        'stylua',
+        'yamllint',
+        'hadolint',
+        'phpstan',
+        'jsonlint',
+        'markdownlint',
+        'eslint_d',
+        'selene',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        ensure_installed = ensure_installed,
-        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}

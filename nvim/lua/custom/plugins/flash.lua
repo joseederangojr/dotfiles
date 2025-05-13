@@ -15,9 +15,6 @@ return {
           enabled = false,
         },
       },
-      jump = {
-        autojump = true,
-      },
     },
     keys = {
       {
