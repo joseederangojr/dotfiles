@@ -177,6 +177,7 @@ return {
         emmet_language_server = {},
         yamlls = {},
         jsonls = {},
+        pyright = {},
         --
         lua_ls = {
           -- cmd = {...},
@@ -223,6 +224,8 @@ return {
         'markdownlint',
         'eslint_d',
         'selene',
+        'black',
+        'ruff',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

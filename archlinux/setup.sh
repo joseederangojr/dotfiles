@@ -50,8 +50,8 @@ echo -e "${BLUE}Installing additional packages from AUR using yay...${RESET}"
 aur_packages=(
     google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted torrent-git
     maim screenkey slop catppuccin-gtk-theme-mocha  papirus-icon-theme
-    papirus-folders-catppuccin-git inter-font 
-
+    papirus-folders-catppuccin-git inter-font otf-monaspace-nerd brave-bin
+    qutebrowser
 )
 
 for package in "${aur_packages[@]}"; do

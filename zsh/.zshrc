@@ -54,6 +54,3 @@ eval "$(~/.local/bin/mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
-export QT_STYLE_OVERRIDE=gtk2

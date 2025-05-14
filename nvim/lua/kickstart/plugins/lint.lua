@@ -17,6 +17,7 @@ return {
         yaml = { 'yamllint' },
         yml = { 'yamllint' },
         dockerfile = { 'hadolint' },
+        py = { 'ruff' },
       },
       ---@type table<string,table>
       linters = {

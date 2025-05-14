@@ -102,10 +102,9 @@ super + r
 super + ctrl + t
 	kitty
 
-# Google Chrome
+# Default browser 
 super + ctrl + g
-	google-chrome-stable
-
+	xdg-open https://app.daily.dev/
 # file manager
 super + ctrl + e
 	bspc desktop -f ^4 && kitty --hold yazi

@@ -41,6 +41,7 @@ return {
         scss = { 'prettierd', 'prettier', stop_after_first = true },
         php = { 'prettierd', 'prettier', 'pint' },
         sql = { 'sqruff', 'sql-formatter' },
+        python = { 'black' },
       },
       --@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer)
       formatters = {},
