@@ -76,8 +76,5 @@ link_file "$DOTFILES/bat" "$HOME/.config/bat" "bat"
 # Link yazi config
 link_file "$DOTFILES/yazi" "$HOME/.config/yazi" "yazi"
 
-# qutebrowser
-link_file "$DOTFILES/qutebrowser" "$HOME/.config/qutebrowser" "qutebrowser"
-
 echo -e "${GREEN}${BOLD}All dotfiles linked successfully!${RESET}"
 

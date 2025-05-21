@@ -7,8 +7,9 @@ return {
       local harpoon = require 'harpoon'
 
       -- REQUIRED
-      harpoon:setup()
-      -- REQUIRED
+      harpoon:setup {
+        settings = { save_on_toggle = true, sync_on_ui_close = true },
+      }
 
       vim.keymap.set('n', '<leader>a', function()
         harpoon:list():add()
@@ -31,6 +32,10 @@ return {
 
       vim.keymap.set('n', '<C-A-T>', function()
         harpoon:list():select(4)
+      end)
+
+      vim.keymap.set('n', '<C-A-X>', function()
+        harpoon:list():remove_at(vim.fn.line '.')
       end)
 
       -- Toggle previous & next buffers stored within Harpoon list
