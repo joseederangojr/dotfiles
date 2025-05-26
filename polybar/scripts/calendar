@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Kill previous instance
+pkill -x yad-calendar
+
+# Get mouse location
+eval "$(xdotool getmouselocation --shell)"
+
+# Position relative to module (offset downward and centered)
+WIDTH=250
+HEIGHT=200
+OFFSET_X=-125  # Center horizontally under cursor
+OFFSET_Y=20    # Slightly below the module
+
+yad --calendar \
+    --title="yad-calendar" \
+    --class="yad-calendar" \
+    --width=$WIDTH \
+    --height=$HEIGHT \
+    --undecorated \
+    --no-buttons \
+    --close-on-unfocus \
+    --skip-taskbar \
+    --posx=$((X + OFFSET_X)) \
+    --posy=$((Y + OFFSET_Y)) &
+
+# Give it time to spawn
+sleep 0.2

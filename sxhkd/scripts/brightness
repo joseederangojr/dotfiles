@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Ensure the correct number of arguments are passed
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <MonitorName> <+1|-1>"
+    exit 1
+fi
+
+# Get the arguments
+monitor=$1
+adjustment=$2
+
+# Check if the adjustment is valid (+1 or -1)
+if [[ ! "$adjustment" =~ ^[\+\-]1$ ]]; then
+    echo "Invalid adjustment value. Use +1 to increase or -1 to decrease."
+    exit 1
+fi
+
+# Get the current brightness of the specified monitor
+current_brightness=$(xrandr --verbose | grep -A5 "$monitor" | grep "Brightness" | awk '{print $2}')
+
+if [ -z "$current_brightness" ]; then
+    echo "Monitor $monitor not found or no brightness setting available."
+    exit 1
+fi
+
+# Adjust the brightness based on the passed argument
+if [ "$adjustment" == "+1" ]; then
+    new_brightness=$(echo "$current_brightness + 0.1" | bc)
+elif [ "$adjustment" == "-1" ]; then
+    new_brightness=$(echo "$current_brightness - 0.1" | bc)
+fi
+
+# Ensure brightness doesn't go below 0 or above 1
+if (( $(echo "$new_brightness > 1" | bc -l) )); then
+    new_brightness=1
+elif (( $(echo "$new_brightness < 0" | bc -l) )); then
+    new_brightness=0
+fi
+
+# Apply the new brightness value
+xrandr --output "$monitor" --brightness "$new_brightness"
