@@ -10,7 +10,7 @@ CYAN='\033[0;36m'
 RED='\033[0;31m'
 
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-
+echo $DOTFILES;
 # Function to link files with color output
 link_file() {
     local src=$1
@@ -26,7 +26,7 @@ link_file() {
     echo -e "${GREEN}Linked ${label}${RESET} to ${dest}"
 }
 
-link_file "$DOTFILES/kitty" "$HOME/.config/kitty" "kitty"
+link_file "$DOTFILES/kitty" "$HOME/.config/" "kitty"
 
 link_file "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
 
@@ -40,15 +40,17 @@ link_file "$DOTFILES/yabai/.yabairc" "$HOME/.yabairc" "yabai"
 
 link_file "$DOTFILES/skhd/.skhdrc" "$HOME/.skhdrc" "skhd"
 
-link_file "$DOTFILES/yazi" "$HOME/.config/yazi" "yazi"
+link_file "$DOTFILES/yazi" "$HOME/.config/" "yazi"
+link_file "$DOTFILES/mise" "$HOME/.config/" "mise"
 
 echo -e "${CYAN}Installing ${BOLD}oh-my-zsh${RESET}..."
+rm -rf $HOME/.oh-my-zsh
 git clone https://github.com/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh
 export ZSH_PLUGIN_DIR="$HOME/.oh-my-zsh/plugins"
 mkdir -p $ZSH_PLUGIN_DIR
-git clone https://github.com/zsh-users/zsh-autocomplete $ZSH_PLUGIN_DIR/zsh-autocomplete
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGIN_DIR/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autocomplete.git $ZSH_PLUGIN_DIR/zsh-autocomplete
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGIN_DIR/zsh-autosuggestions
 link_file "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile" "zsh: .zprofile"
 link_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc" "zsh: .zshrc"
 echo -e "${GREEN}zsh configured ${RESET}"
