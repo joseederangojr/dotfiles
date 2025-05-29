@@ -2,6 +2,12 @@
 
 > This is my personal dotfiles. Use it with caution it my break you configs
 
+## Clone the repo
+
+```sh
+git clone --recurse-submodules https://github.com/joseederangojr/dotfiles
+```
+
 ## Macbook Installation
 > It could be preinstall or postinstall
 

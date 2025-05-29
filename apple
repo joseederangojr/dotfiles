@@ -31,6 +31,7 @@ link_file "$DOTFILES/kitty" "$HOME/.config/kitty" "kitty"
 link_file "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
 
 mkdir -p $HOME/.local/bin
+
 link_file "$DOTFILES/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer" "binaries"
 
 link_file "$DOTFILES/nvim" "$HOME/.config/" "nvim"
@@ -39,12 +40,15 @@ link_file "$DOTFILES/yabai/.yabairc" "$HOME/.yabairc" "yabai"
 
 link_file "$DOTFILES/skhd/.skhdrc" "$HOME/.skhdrc" "skhd"
 
+link_file "$DOTFILES/yazi" "$HOME/.config/yazi" "yazi"
 
 echo -e "${CYAN}Installing ${BOLD}oh-my-zsh${RESET}..."
-git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh
+export ZSH_PLUGIN_DIR="$HOME/.oh-my-zsh/plugins"
+mkdir -p $ZSH_PLUGIN_DIR
+git clone https://github.com/zsh-users/zsh-autocomplete $ZSH_PLUGIN_DIR/zsh-autocomplete
+git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGIN_DIR/zsh-autosuggestions
 link_file "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile" "zsh: .zprofile"
 link_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc" "zsh: .zshrc"
 echo -e "${GREEN}zsh configured ${RESET}"
@@ -67,21 +71,19 @@ brew install koekeishiya/formulae/skhd
 brew install koekeishiya/formulae/yabai
 skhd --start-service
 yabai --start-service
-
-
 echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
-
-
 echo -e "${GREEN}Installed skhd and yabai${RESET}"
 
 echo -e "${CYAN}Setting up ${BOLD}mise${RESET}..."
 eval "$(mise activate zsh)"
-
 echo -e "${CYAN}Installing mise PHP dependencies ${RESET}..."
-brew upgrade autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl@1.1 pkg-config re2c zlib
-
+brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl pkg-config re2c zlib
+export PATH="$(brew --prefix gettext)/bin:$PATH"
+export PATH="$(brew --prefix icu4c)/bin:$PATH"
+export PATH="$(brew --prefix openssl)/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include"
 echo -e "${CYAN}Installing mise tools${RESET}..."
 mise install
-echo -e "${GREEN}Installed mise tools${RESET}"
 
 echo -e "${GREEN}Installation success${RESET}"
