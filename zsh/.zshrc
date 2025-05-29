@@ -17,7 +17,10 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 
 
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(zsh-autocomplete zsh-autosuggestions)
+
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+plugins=(zsh-autosuggestions)
 autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zprofile
