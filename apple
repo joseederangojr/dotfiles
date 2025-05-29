@@ -35,12 +35,12 @@ link_file "$DOTFILES/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer" "
 
 link_file "$DOTFILES/nvim" "$HOME/.config/" "nvim"
 
-link_file "$DOTFILES/yabai/.yabairc" "$HOME" "yabai"
+link_file "$DOTFILES/yabai/.yabairc" "$HOME/.yabairc" "yabai"
 
-link_file "$DOTFILES/skhd/.skhdrc" "$HOME" "skhd"
+link_file "$DOTFILES/skhd/.skhdrc" "$HOME/.skhdrc" "skhd"
 
-link_file "$DOTFILES/zsh/.zprofile" "$HOME" "zsh: .zprofile"
-link_file "$DOTFILES/zsh/.zshrc" "$HOME" "zsh: .zshrc"
+link_file "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile" "zsh: .zprofile"
+link_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc" "zsh: .zshrc"
 
 
 echo -e "${CYAN}Installing ${BOLD}xcode-select${RESET}..."
