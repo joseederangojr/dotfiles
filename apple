@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+# Define color variables
+RESET='\033[0m'
+BOLD='\033[1m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+RED='\033[0;31m'
+
+DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# Function to link files with color output
+link_file() {
+    local src=$1
+    local dest=$2
+    local label=$3
+
+    echo -e "${CYAN}Linking ${BOLD}$label${RESET}..."
+    if [ -e "$dest" ]; then
+        echo -e "${RED}Configuration for $label existed. Removing current config for ${BOLD}$label${RESET}..."
+        rm -rf "$dest"
+    fi
+    ln -s "$src" "$dest"
+    echo -e "${GREEN}Linked ${label}${RESET} to ${dest}"
+}
+
+link_file "$DOTFILES/kitty" "$HOME/.config/kitty" "kitty"
+
+link_file "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
+
+mkdir -p $HOME/.local/bin
+link_file "$DOTFILES/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer" "binaries"
+
+link_file "$DOTFILES/nvim" "$HOME/.config/" "nvim"
+
+link_file "$DOTFILES/yabai/.yabairc" "$HOME" "yabai"
+
+link_file "$DOTFILES/skhd/.skhdrc" "$HOME" "skhd"
+
+link_file "$DOTFILES/zsh/.zprofile" "$HOME" "zsh: .zprofile"
+link_file "$DOTFILES/zsh/.zshrc" "$HOME" "zsh: .zshrc"
+
+
+echo -e "${CYAN}Installing ${BOLD}xcode-select${RESET}..."
+xcode-select --install
+echo -e "${GREEN}Installed xcode-select ${RESET}"
+
+echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/usr/local/bin/brew shellenv)"
+
+echo -e "${CYAN}Installing ${BOLD}homebrew packages${RESET}..."
+brew install wget curl zsh git neovim tmux lsd btop ripgrep fd bat jq kitty brave-browser zed font-monaspace starship docker docker-compose mise direnv yazi ffmpeg sevenzip poppler fzf zoxide resvg imagemagick font-symbols-only-nerd-font raycast
+
+echo -e "${GREEN}Installed homebrew packages ${RESET}"
+
+echo -e "${CYAN}Installing ${BOLD}homebrew skhd and yabai${RESET}..."
+brew install koekeishiya/formulae/skhd
+brew install koekeishiya/formulae/yabai
+skhd --start-service
+yabai --start-service
+
+
+echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+
+
+echo -e "${GREEN}Installed skhd and yabai${RESET}"
+
+echo -e "${CYAN}Setting up ${BOLD}mise${RESET}..."
+eval "$(mise activate zsh)"
+
+echo -e "${CYAN}Installing mise PHP dependencies ${RESET}..."
+brew upgrade autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl@1.1 pkg-config re2c zlib
+
+echo -e "${CYAN}Installing mise tools${RESET}..."
+mise install
+echo -e "${GREEN}Installed mise tools${RESET}"
+
+echo -e "${GREEN}Installation success${RESET}"

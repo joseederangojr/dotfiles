@@ -30,32 +30,20 @@ yabai -m config mouse_action2 resize
 yabai -m mouse_drop_action swap
 
 # spaces alias
-yabai -m space 1 --label txt
-yabai -m space 2 --label www
-yabai -m space 3 --label sys
-yabai -m space 4 --label msg
-yabai -m space 5 --label doc
+yabai -m space 1 --label msg
+yabai -m space 2 --label doc
+yabai -m space 3 --label txt
+yabai -m space 4 --label sys
+yabai -m space 5 --label www
 
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Preferences$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Hubstaff$" manage=off
 yabai -m rule --add app="^QuickTime Player$" manage=off
 
 # assign apps to specific spaces
-yabai -m rule --add app="^iTerm$" space=txt
 yabai -m rule --add app="^kitty$" space=txt
 yabai -m rule --add app="^Terminal$" space=txt
-yabai -m rule --add app="^Google Chrome$" space=www
-yabai -m rule --add app="^Orion$" space=www
+yabai -m rule --add app="^Brave$" space=www
 yabai -m rule --add app="^Safari$" space=www
-yabai -m rule --add app="^DBngin$" space=sys
-yabai -m rule --add app="^TablePlus$" space=sys
-yabai -m rule --add app="^Hubstaff$" space=sys
-yabai -m rule --add app="^Microsoft Teams$" space=msg
-yabai -m rule --add app="^Skype$" space=msg
-yabai -m rule --add app="^WhatsApp$" space=msg
-yabai -m rule --add app="^Microsoft Word$" space=doc
-yabai -m rule --add app="^Microsoft Excel$" space=doc
-yabai -m rule --add app="^Microsoft Powerpoint$" space=doc

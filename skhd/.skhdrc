@@ -1,18 +1,8 @@
 # Apps
 # Hyper is Ctrl+Shift+Alt+Cmd, while Meh is Ctrl+Shift+Alt
-cmd + ctrl - t: open -a kitty && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "kitty")] | .id')
-cmd + ctrl - g: open -a 'Google Chrome' && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Google Chrome")] | .id')
-cmd + ctrl - d: open -a DBngin && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "DBngin")] | .id')
-cmd + ctrl - b: open -a TablePlus && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "TablePlus")] | .id')
-cmd + ctrl - k: open -a Skype && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Skype")] | .id')
-cmd + ctrl - x: open -a WhatsApp && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "WhatsApp")] | .id')
-cmd + ctrl - h: open -a Hubstaff && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Hubstaff")] | .id')
-cmd + ctrl - m: open -a "Microsoft Teams" && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Microsoft Teams")] | .id')
-cmd + ctrl - w: open -a "Microsoft Word" && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Microsoft Word")] | .id')
-cmd + ctrl - e: open -a "Microsoft Excel" && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Microsoft Excel")] | .id')
-cmd + ctrl - p: open -a "Microsoft Powerpoint" && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Microsoft Powerpoint")] | .id')
-ctrl + shift + alt - s: open -a Spotify && yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(.app == "Spotify")] | .id')
-
+cmd + ctrl - t: open -a kitty 
+cmd + ctrl - g: open -a 'Google Chrome'
+cmd + ctrl - e: open -a kitty --hold yazi
 
 # -- Changing Window Focus --
 
