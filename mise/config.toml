@@ -1,4 +1,6 @@
 [tools]
 bun = "latest"
-node = "22"
+go = "latest"
+node = "latest"
 php = "8.3"
+rust = "latest"

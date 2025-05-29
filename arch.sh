@@ -9,7 +9,6 @@ BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 RED='\033[0;31m'
 
-WD=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 link_file() {
@@ -19,6 +18,7 @@ link_file() {
 
     echo -e "${GREEN}Linking ${BOLD}$label${RESET}..."
     if [ -e "$dest" ]; then
+        echo -e "${GREEN}Removing existing files for ${BOLD}$label${RESET}..."
         rm -rf "$dest"
     fi
     ln -s "$src" "$dest"
@@ -71,7 +71,7 @@ aur_packages=(
     google-chrome ttf-nerd-fonts-symbols maplemono-nf-cn-unhinted torrent-git
     maim screenkey slop catppuccin-gtk-theme-mocha  papirus-icon-theme
     papirus-folders-catppuccin-git inter-font otf-monaspace-nerd brave-bin
-    qutebrowser
+    direnv code zed
 )
 
 for package in "${aur_packages[@]}"; do
@@ -90,7 +90,7 @@ if ! command -v yay >/dev/null 2>&1; then
     cd $HOME/pkgs/yay || exit
     makepkg -si --noconfirm
     git clean -fdx
-    cd "$WD" || exit
+    cd "$DOTFILES" || exit
 else
     echo -e "${YELLOW}yay is already installed.${RESET}"
 fi
@@ -272,7 +272,7 @@ link_file "$DOTFILES/polybar" "$HOME/.config/polybar" "polybar"
 link_file "$DOTFILES/rofi" "$HOME/.config/rofi" "rofi"
 
 # Link starship prompt config
-link_file "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml" "starship"
+link_file "$DOTFILES/starship" "$HOME/.config/starship" "starship"
 
 # Link zsh config
 link_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc" "zshrc"

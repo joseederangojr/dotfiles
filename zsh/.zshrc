@@ -17,7 +17,7 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 
 
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git laravel zsh-autocomplete zsh-autosuggestions)
+plugins=(zsh-autocomplete zsh-autosuggestions)
 autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zprofile
@@ -27,6 +27,7 @@ export ZSH_CUSTOM="$ZSH/custom"
 export ZSH_PLUGINS="$ZSH/plugins"
 
 # Starship.rs
+export STARSHIP_CACHE=~/.config/starship/cache
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
@@ -52,5 +53,13 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"
+
+# Direnv
+eval "$(direnv hook zsh)"
+
+# editor
+alias vim=nvim
+export EDITOR=nvim
+
 
 source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
