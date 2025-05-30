@@ -22,11 +22,6 @@ echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
 eval "$(/usr/local/bin/brew shellenv)"
 echo -e "${CYAN}Installing ${BOLD}packages using brew bundle${RESET}..."
 brew bundle
-echo -e "${CYAN}Installing ${BOLD}homebrew skhd and yabai${RESET}..."
-brew install koekeishiya/formulae/skhd
-brew install koekeishiya/formulae/yabai
-echo -e "${GREEN}Installed homebrew packages ${RESET}"
-
 
 # zsh
 echo -e "${CYAN}Installing ${BOLD}oh-my-zsh${RESET}..."
@@ -41,7 +36,7 @@ echo -e "${GREEN}zsh configured ${RESET}"
 
 # mise
 echo -e "${CYAN}Setting up ${BOLD}mise${RESET}..."
-eval "$(mise activate zsh)"
+eval "$(/usr/local/bin/mise activate zsh)"
 export PATH="$PATH"
 export LDFLAGS="$LDFLAGS"
 export CPPFLAGS="$CPPFLAGS"
@@ -62,16 +57,39 @@ PATH=$(awk -v RS=: -v ORS=: '!a[$1]++' <<<"$PATH" | sed 's/:$//')
 LDFLAGS=$(xargs <<<"$LDFLAGS")
 CPPFLAGS=$(xargs <<<"$CPPFLAGS")
 
-echo -e "${CYAN}Installing mise tools${RESET}..."
-mise install
-
 # yabai and skhd
 echo -e "${CYAN}Configure skhd and yabai${RESET}..."
 echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
 skhd --start-service
 yabai --start-service
 
-# linking configs
-stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux shkd starship ssh nvim mise kitty git bin bat git btop yabai shkd
 
-echo -e "${GREEN}Installation success${RESET}"
+# docker
+if command -v docker >/dev/null 2>&1; then
+    echo -e "${CYAN}Configuring docker${RESET}"
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+    docker run hello-world
+fi
+
+# yazi
+if command -v yazi >/dev/null 2>&1; then
+    echo -e "${CYAN}Installing yazi plugins...${RESET}"
+    mkdir -p ~/.config/yazi/plugins
+    ya pack -a yazi-rs/plugins:smart-paste
+    ya pack -a yazi-rs/plugins:smart-filter
+    ya pack -a yazi-rs/plugins:smart-enter
+
+    git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi     
+fi
+
+
+# linking configs
+echo -e "${CYAN}Linking stow${RESET}..."
+stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux shkd starship ssh nvim mise kitty git bin bat git btop yabai skhd
+
+echo -e "${CYAN}Installing mise tools${RESET}..."
+mise install
+
+echo -e "${GREEN}Installation and setup success${RESET}"

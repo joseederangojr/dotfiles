@@ -159,6 +159,7 @@ fi
 if  command -v mise >/dev/null 2>&1; then
     echo -e "${CYAN}mise-en-place is not installed, installing it...${RESET}"
     curl https://mise.run | sh
+    eval "$($HOME/.local/bin/mise active mise)"
     echo -e "${CYAN}[mise-enplace]: Installing PHP dependencies...${RESET}"
     
     # Install necessary dependencies for mise-en-place
@@ -204,11 +205,7 @@ if command -v yazi >/dev/null 2>&1; then
     ya pack -a yazi-rs/plugins:smart-enter
 
     mkdir -p ~/.config/yazi/plugins
-     
-else
-
-    echo -e "${YELLOW}oh my zsh is already installed.${RESET}"
-git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi
+    git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi 
 fi
 
 if ! command -v dmenu >/dev/null 2>&1; then
@@ -235,6 +232,10 @@ if ! systemctl is-active --quiet "ly.service"; then
     sudo systemctl enable ly
 fi
 
-echo -e "${GREEN}${BOLD}Setup complete. All packages and configurations are installed.${RESET}"
-
+echo -e "${CYAN}Linking stow${RESET}..."
 stow --target=$HOME --adopt --verbose zsh zed yazi xinit vscode tmux sxhkd starship ssh screenkey rofi polybar picom nvim mise kitty git dunst bspwm bin bat gtk git btop 
+
+echo -e "${CYAN}installing mise tools...${RESET}"
+mise install
+
+echo -e "${GREEN}${BOLD}Setup complete. All packages and configurations are installed.${RESET}"

@@ -1,5 +1,3 @@
-tap "qmk/qmk"
-
 # Build-time / libs
 brew "autoconf"
 brew "automake"
@@ -37,9 +35,9 @@ brew "imagemagick"
 brew "jq"
 brew "lsd"
 brew "neovim"
-brew "playerctl"
 brew "poppler"
 brew "qmk/qmk/qmk"
+brew "qmk-toolbox"
 brew "resvg"
 brew "ripgrep"
 brew "starship"
@@ -51,6 +49,8 @@ brew "zoxide"
 brew "zsh"
 brew "sevenzip"  # Note: Homebrew package name is p7zip, so replace if needed
 brew "mise"      # Not found in core or casks, verify or remove
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
 
 # Cask (GUI apps)
 cask "brave-browser"
@@ -66,4 +66,3 @@ cask "font-inter"
 cask "font-monaspace"
 cask "font-monaspace-nerd-font"
 cask "font-maple-mono-nerd-font"
-
