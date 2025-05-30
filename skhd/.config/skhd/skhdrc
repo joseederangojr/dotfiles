@@ -108,8 +108,8 @@ cmd + shift - k : yabai -m window --swap north
 cmd + shift - l : yabai -m window --swap east
 
 # focus next/prev window (cmd + shift - [,])
-cmd + shift - 0x21: yabai -m window --focus next
-cmd + shift - Ox1E : yabai -m window --focus prev
+cmd + shift - 0x21 : yabai -m window --focus next
+cmd + shift - 0x1E : yabai -m window --focus prev
 
 # focus next/prev space (desktop) (cmd - [,])
 cmd - 0x21 : yabai -m space --focus prev
