@@ -63,16 +63,6 @@ echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut
 skhd --start-service
 yabai --start-service
 
-
-# docker
-if command -v docker >/dev/null 2>&1; then
-    echo -e "${CYAN}Configuring docker${RESET}"
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    newgrp docker
-    docker run hello-world
-fi
-
 # yazi
 if command -v yazi >/dev/null 2>&1; then
     echo -e "${CYAN}Installing yazi plugins...${RESET}"
