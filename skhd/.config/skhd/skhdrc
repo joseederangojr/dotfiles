@@ -1,7 +1,7 @@
 # Apps
 # Hyper is Ctrl+Shift+Alt+Cmd, while Meh is Ctrl+Shift+Alt
 cmd + ctrl - t: open -a kitty 
-cmd + ctrl - g: open -a 'Google Chrome'
+cmd + ctrl - g: open -a 'Brave Browser'
 cmd + ctrl - e: open -a kitty --hold yazi
 
 # # -- Changing Window Focus --
@@ -116,12 +116,12 @@ cmd - c : yabai -m window --focus next
 cmd + shift - c : yabai -m window --focus prev
 
 # focus next/prev space (desktop)
-cmd - bracketleft : yabai -m space --focus prev
-cmd - bracketright : yabai -m space --focus next
+cmd - 0x21 : yabai -m space --focus prev
+cmd - 0x1E : yabai -m space --focus next
 
 # focus last window/space
-cmd - grave : yabai -m window --focus recent
-cmd - tab : yabai -m space --focus recent
+cmd - 0x32 : yabai -m window --focus recent
+cmd - 0x30 : yabai -m space --focus recent
 
 # focus space 1-5
 cmd - 1 : yabai -m space --focus 1
