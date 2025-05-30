@@ -1,0 +1,17 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-paste"
+rev = "864a021"
+hash = "104fa2ce07d8890b07fcff68b0aaf923"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "864a021"
+hash = "f0c4b41b5d19a3144958383333eff6e7"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "864a021"
+hash = "7918aab6a71caf31b58411f789195677"
+
+[flavor]
+deps = []
