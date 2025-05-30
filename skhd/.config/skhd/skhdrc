@@ -1,8 +1,8 @@
 # Apps
 # Hyper is Ctrl+Shift+Alt+Cmd, while Meh is Ctrl+Shift+Alt
-cmd + ctrl - t: open -a -n kitty 
-cmd + ctrl - g: open -a -n 'Brave Browser'
-cmd + ctrl - e: open -a -n kitty --hold yazi
+cmd + ctrl - t: open -n -a  kitty 
+cmd + ctrl - g: open -n -a  'Brave Browser'
+cmd + ctrl - e: open -n -a  kitty --hold yazi
 
 # # -- Changing Window Focus --
 #

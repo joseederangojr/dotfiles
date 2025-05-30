@@ -1,7 +1,7 @@
 [user]
     name = Jose Ederango Jr
     email = joseederangojr@gmail.com 
-    signingkey =BE548B5A3D62A25F 
+    signingkey = BE548B5A3D62A25F 
 
 [commit]
     gpgSign = true
