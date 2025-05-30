@@ -70,5 +70,6 @@ alias vim=nvim
 alias v=nvim
 export EDITOR=nvim
 
+export GPG_TTY=$(tty)
 
 source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
