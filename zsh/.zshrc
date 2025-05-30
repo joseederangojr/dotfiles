@@ -17,17 +17,16 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 
 
 export ZSH="$HOME/.oh-my-zsh"
-
-
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-plugins=(zsh-autosuggestions)
-autoload -U compinit && compinit
-source $ZSH/oh-my-zsh.sh
-source $HOME/.zprofile
-# Config
 export XDG_HOME_CONFIG="$HOME/.config"
 export ZSH_CUSTOM="$ZSH/custom"
 export ZSH_PLUGINS="$ZSH/plugins"
+
+fpath+="$ZSH_PLUGINS/zsh-completions/src"
+autoload -U compinit && compinit
+plugins=(zsh-autosuggestions)
+source $ZSH/oh-my-zsh.sh
+source $HOME/.zprofile
+# Config
 
 # Starship.rs
 export STARSHIP_CACHE=~/.config/starship/cache

@@ -1,0 +1,35 @@
+# feat:   (nf-oct-flame)       - New feature
+# feat:   (nf-fa-search)       - Discoverability
+# feat:   (nf-fa-link)         - Linking, Integration
+# feat:   (nf-fa-key)          - Security, Access
+
+# fix:   (nf-fa-bug)           - General bug
+# fix:   (nf-cod-bug)          - Bug alt (Nerd Font variant)
+# fix:   (nf-fa-medkit)        - Hotfix / patch
+# fix:   (nf-oct-ambulance)    - Emergency fix
+
+# style:   (nf-custom-css)     - Code style / CSS tweaks
+# style:   (nf-oct-paintcan)   - Visual polish
+# style:   (nf-oct-mirror)     - UI-related tweaks
+
+# ci:   (nf-cod-github)         - Github CI
+# ci:   (nf-oct-package)        - Packaging / build pipeline
+
+# deploy:   (nf-fa-cloud)         - Deploy action
+# deploy:   (nf-oct-rocket)       - App launch
+
+# chore:   (nf-fa-trash_o)     - Cleanup
+# chore:   (nf-fa-cogs)        - Config & tooling
+# chore:   (nf-oct-tools)      - Dev tasks
+
+# docs:   (nf-oct-book)        - Documentation
+
+# refactor:   (nf-fa-wrench)    - Code refactoring
+# perf:   (nf-oct-meter)        - Performance improvement
+
+# test:   (nf-oct-beaker)      - Testing
+# debug:   (nf-fa-bug)         - Debugging (same as fix, or choose unique)
+
+# BREAKING CHANGE:   (nf-oct-alert)       - Breaking change
+# BREAKING CHANGE:   (nf-fa-warning)      - Major breaking update
+# BREAKING CHANGE:   (nf-fa-bomb)         - Dangerous breaking change

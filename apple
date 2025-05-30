@@ -9,40 +9,26 @@ BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 RED='\033[0;31m'
 
-DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-echo $DOTFILES;
-# Function to link files with color output
-link_file() {
-    local src=$1
-    local dest=$2
-    local label=$3
-
-    echo -e "${CYAN}Linking ${BOLD}$label${RESET}..."
-    if [ -e "$dest" ]; then
-        echo -e "${RED}Configuration for $label existed. Removing current config for ${BOLD}$label${RESET}..."
-        rm -rf "$dest"
-    fi
-    ln -s "$src" "$dest"
-    echo -e "${GREEN}Linked ${label}${RESET} to ${dest}"
-}
-
-link_file "$DOTFILES/kitty" "$HOME/.config/kitty" "kitty"
-
-link_file "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf" "tmux"
-
 mkdir -p $HOME/.local/bin
 
-link_file "$DOTFILES/bin/tmux-sessionizer" "$HOME/.local/bin/tmux-sessionizer" "binaries"
+# xcode
+echo -e "${CYAN}Installing ${BOLD}xcode-select${RESET}..."
+xcode-select --install
+echo -e "${GREEN}Installed xcode-select ${RESET}"
 
-link_file "$DOTFILES/nvim" "$HOME/.config/nvim" "nvim"
+# homebrew
+echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/usr/local/bin/brew shellenv)"
+echo -e "${CYAN}Installing ${BOLD}packages using brew bundle${RESET}..."
+brew bundle
+echo -e "${CYAN}Installing ${BOLD}homebrew skhd and yabai${RESET}..."
+brew install koekeishiya/formulae/skhd
+brew install koekeishiya/formulae/yabai
+echo -e "${GREEN}Installed homebrew packages ${RESET}"
 
-link_file "$DOTFILES/yabai/.yabairc" "$HOME/.yabairc" "yabai"
 
-link_file "$DOTFILES/skhd/.skhdrc" "$HOME/.skhdrc" "skhd"
-
-link_file "$DOTFILES/yazi" "$HOME/.config/yazi" "yazi"
-link_file "$DOTFILES/mise" "$HOME/.config/mise" "mise"
-
+# zsh
 echo -e "${CYAN}Installing ${BOLD}oh-my-zsh${RESET}..."
 rm -rf $HOME/.oh-my-zsh
 git clone https://github.com/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh
@@ -51,41 +37,41 @@ mkdir -p $ZSH_PLUGIN_DIR
 git clone https://github.com/zsh-users/zsh-completions.git $ZSH_PLUGIN_DIR/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGIN_DIR/zsh-autosuggestions
-link_file "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile" "zsh: .zprofile"
-link_file "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc" "zsh: .zshrc"
 echo -e "${GREEN}zsh configured ${RESET}"
 
-echo -e "${CYAN}Installing ${BOLD}xcode-select${RESET}..."
-xcode-select --install
-echo -e "${GREEN}Installed xcode-select ${RESET}"
-
-echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/usr/local/bin/brew shellenv)"
-
-echo -e "${CYAN}Installing ${BOLD}homebrew packages${RESET}..."
-brew install wget curl zsh git neovim tmux lsd btop ripgrep fd bat jq kitty brave-browser zed font-monaspace starship docker docker-compose mise direnv yazi ffmpeg sevenzip poppler fzf zoxide resvg imagemagick font-symbols-only-nerd-font raycast
-
-echo -e "${GREEN}Installed homebrew packages ${RESET}"
-
-echo -e "${CYAN}Installing ${BOLD}homebrew skhd and yabai${RESET}..."
-brew install koekeishiya/formulae/skhd
-brew install koekeishiya/formulae/yabai
-skhd --start-service
-yabai --start-service
-echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
-echo -e "${GREEN}Installed skhd and yabai${RESET}"
-
+# mise
 echo -e "${CYAN}Setting up ${BOLD}mise${RESET}..."
 eval "$(mise activate zsh)"
-echo -e "${CYAN}Installing mise PHP dependencies ${RESET}..."
-brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl pkg-config re2c zlib
-export PATH="$(brew --prefix gettext)/bin:$PATH"
-export PATH="$(brew --prefix icu4c)/bin:$PATH"
-export PATH="$(brew --prefix openssl)/bin:$PATH"
-export LDFLAGS="-L$(brew --prefix openssl)/lib"
-export CPPFLAGS="-I$(brew --prefix openssl)/include"
+export PATH="$PATH"
+export LDFLAGS="$LDFLAGS"
+export CPPFLAGS="$CPPFLAGS"
+
+# Add bin paths to PATH, and lib/include to LDFLAGS/CPPFLAGS
+for formula in "${formulae[@]}"; do
+  prefix=$(brew --prefix "$formula" 2>/dev/null)
+  if [[ -d "$prefix" ]]; then
+    [[ -d "$prefix/bin" ]] && export PATH="$prefix/bin:$PATH"
+    [[ -d "$prefix/sbin" ]] && export PATH="$prefix/sbin:$PATH"
+    [[ -d "$prefix/lib" ]] && export LDFLAGS="-L$prefix/lib $LDFLAGS"
+    [[ -d "$prefix/include" ]] && export CPPFLAGS="-I$prefix/include $CPPFLAGS"
+  fi
+done
+
+# Optionally deduplicate PATH, LDFLAGS, CPPFLAGS
+PATH=$(awk -v RS=: -v ORS=: '!a[$1]++' <<<"$PATH" | sed 's/:$//')
+LDFLAGS=$(xargs <<<"$LDFLAGS")
+CPPFLAGS=$(xargs <<<"$CPPFLAGS")
+
 echo -e "${CYAN}Installing mise tools${RESET}..."
 mise install
+
+# yabai and skhd
+echo -e "${CYAN}Configure skhd and yabai${RESET}..."
+echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+skhd --start-service
+yabai --start-service
+
+# linking configs
+stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux shkd starship ssh nvim mise kitty git bin bat git btop yabai shkd
 
 echo -e "${GREEN}Installation success${RESET}"
