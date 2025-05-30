@@ -22,6 +22,7 @@ echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
 eval "$(/usr/local/bin/brew shellenv)"
 echo -e "${CYAN}Installing ${BOLD}packages using brew bundle${RESET}..."
 brew bundle
+brew install openssl@1.1 --force
 
 # zsh
 echo -e "${CYAN}Installing ${BOLD}oh-my-zsh${RESET}..."
