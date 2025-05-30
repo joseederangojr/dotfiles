@@ -21,9 +21,8 @@ export XDG_HOME_CONFIG="$HOME/.config"
 export ZSH_CUSTOM="$ZSH/custom"
 export ZSH_PLUGINS="$ZSH/plugins"
 
-fpath+="$ZSH_PLUGINS/zsh-completions/src"
+plugins=(zsh-completions zsh-autosuggestions)
 autoload -U compinit && compinit
-plugins=(zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zprofile
 # Config
@@ -50,7 +49,14 @@ export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 
 # Mise-en-place
-eval "$(~/.local/bin/mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate bash)"
+elif [ -f /usr/local/bin/mise ]; then
+  eval "$(/usr/local/bin/mise activate zsh)"
+elif [ -f "$HOME/.local/bin/mise" ]; then
+  eval "$("$HOME/.local/bin/mise" activate bash)"
+fi
+
 
 
 # Zoxide
@@ -61,6 +67,7 @@ eval "$(direnv hook zsh)"
 
 # editor
 alias vim=nvim
+alias v=nvim
 export EDITOR=nvim
 
 

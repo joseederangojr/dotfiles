@@ -87,7 +87,7 @@ fi
 
 # linking configs
 echo -e "${CYAN}Linking stow${RESET}..."
-stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux shkd starship ssh nvim mise kitty git bin bat git btop yabai skhd
+stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux starship ssh nvim mise kitty git bin bat btop yabai skhd
 
 echo -e "${CYAN}Installing mise tools${RESET}..."
 mise install
