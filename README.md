@@ -5,11 +5,11 @@
 ## Clone the repo
 
 ```sh
-git clone --recurse-submodules https://github.com/joseederangojr/dotfiles
+git clone https://github.com/joseederangojr/dotfiles
 ```
 
 ## Macbook Installation
 > It could be preinstall or postinstall
 
 1. Install [yabai](https://github.com/koekeishiya/yabai) a binary space partitioning (bsp) tiling window manager for MacOS
-
+2. run `./apple`
