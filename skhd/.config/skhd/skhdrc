@@ -1,8 +1,8 @@
 # Apps
 # Hyper is Ctrl+Shift+Alt+Cmd, while Meh is Ctrl+Shift+Alt
-cmd + ctrl - t: open -a kitty 
-cmd + ctrl - g: open -a 'Brave Browser'
-cmd + ctrl - e: open -a kitty --hold yazi
+cmd + ctrl - t: open -a -n kitty 
+cmd + ctrl - g: open -a -n 'Brave Browser'
+cmd + ctrl - e: open -a -n kitty --hold yazi
 
 # # -- Changing Window Focus --
 #
@@ -83,21 +83,17 @@ cmd + ctrl - e: open -a kitty --hold yazi
 
 
 # reload or quit yabai
-alt + cmd - r : yabai --restart-service
-alt + cmd - q : yabai --stop-service
+ cmd + alt - r : yabai --restart-service
+ cmd + alt - q : yabai --stop-service
 
 # close window (kill)
-cmd - w : yabai -m window --close
-cmd + shift - w : yabai -m window --close # same, since there's no kill variant
-
-# toggle layouts
-cmd - m : yabai -m space --layout stack  # or bsp / float, depending on your setup
+cmd + shift - w : yabai -m window --close
 
 # set window state
-cmd - t : yabai -m window --toggle float
-cmd + shift - t : yabai -m window --toggle zoom-parent  # simulate pseudo-tile
-cmd - f : yabai -m window --toggle float
-cmd - z : yabai -m window --toggle zoom-fullscreen
+alt - t : yabai -m window --toggle float
+alt + shift - t : yabai -m window --toggle zoom-parent  # simulate pseudo-tile
+alt - f : yabai -m window --toggle float
+alt - z : yabai -m window --toggle zoom-fullscreen
 
 # focus window in direction
 cmd - h : yabai -m window --focus west
@@ -111,15 +107,15 @@ cmd + shift - j : yabai -m window --swap south
 cmd + shift - k : yabai -m window --swap north
 cmd + shift - l : yabai -m window --swap east
 
-# focus next/prev window
-cmd - c : yabai -m window --focus next
-cmd + shift - c : yabai -m window --focus prev
+# focus next/prev window (cmd + shift - [,])
+cmd + shift - 0x21: yabai -m window --focus next
+cmd + shift - Ox1E : yabai -m window --focus prev
 
-# focus next/prev space (desktop)
+# focus next/prev space (desktop) (cmd - [,])
 cmd - 0x21 : yabai -m space --focus prev
 cmd - 0x1E : yabai -m space --focus next
 
-# focus last window/space
+# focus last window/space (cmd - grave,cmd - tab)
 cmd - 0x32 : yabai -m window --focus recent
 cmd - 0x30 : yabai -m space --focus recent
 
