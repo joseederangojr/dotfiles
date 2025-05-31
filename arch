@@ -233,7 +233,7 @@ if ! systemctl is-active --quiet "ly.service"; then
 fi
 
 echo -e "${CYAN}Linking stow${RESET}..."
-stow --target=$HOME --adopt --verbose zsh zed yazi xinit vscode tmux sxhkd starship ssh screenkey rofi polybar picom nvim mise kitty git dunst bspwm bin bat gtk git btop 
+stow --target=$HOME --adopt --verbose zsh zed yazi xinit vscode tmux sxhkd starship ssh screenkey rofi polybar picom nvim mise kitty git dunst bspwm bin bat gtk git btop nb 
 
 echo -e "${CYAN}installing mise tools...${RESET}"
 mise install
