@@ -102,16 +102,6 @@ alias vim=nvim
 alias v='nvim .'
 alias e='nvim' 
 
-
-# keyboard
-bindkey -s ^f "$HOME/.local/bin/tmux-sessionizer\n"
-bindkey ^y autosuggest-accept
-bindkey '^ ' autosuggest-fetch
-bindkey "\el" forward-word
-bindkey "\eh" backward-word
-bindkey  "\eL" end-of-line
-bindkey "\eH" beginning-of-line 
-
 HISTFILE=$HOME/.zsh_history # location of the history file
 HISTFILESIZE=1000000000 # history limit of the file on disk
 HISTSIZE=1000000000 # current session's history limit
@@ -258,4 +248,14 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
 # Paths
 ZSH_HIGHLIGHT_STYLES[path]='none'
+
+
+# keyboard
+bindkey -s ^f "$HOME/.local/bin/tmux-sessionizer\n"
+bindkey ^y autosuggest-accept
+bindkey '^ ' autosuggest-fetch
+bindkey "\el" forward-word
+bindkey "\eh" backward-word
+bindkey  "\eL" end-of-line
+bindkey "\eH" beginning-of-line 
 
