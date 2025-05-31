@@ -20,6 +20,7 @@ brew "zlib"
 
 # CLI tools
 brew "bat"
+brew "eza"
 brew "btop"
 brew "curl"
 brew "diff-so-fancy"
@@ -35,6 +36,7 @@ brew "imagemagick"
 brew "jq"
 brew "lsd"
 brew "neovim"
+brew "nb"
 brew "poppler"
 brew "qmk/qmk/qmk"
 brew "resvg"
@@ -46,8 +48,8 @@ brew "wget"
 brew "yazi"
 brew "zoxide"
 brew "zsh"
-brew "sevenzip"  # Note: Homebrew package name is p7zip, so replace if needed
-brew "mise"      # Not found in core or casks, verify or remove
+brew "sevenzip"
+brew "mise"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 
