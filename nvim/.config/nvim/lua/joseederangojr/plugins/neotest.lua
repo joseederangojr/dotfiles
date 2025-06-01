@@ -16,14 +16,13 @@ return {
           require("neotest-vitest"),
         },
       })
-      local map = vim.keymap.set
-      map("n", "<leader>tn", require("neotest").run.run, { desc = "Run [t]est [n]earest" })
+      local map = function(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { desc = "Run [T]est" .. desc })
+      end
+      map("n", "<leader>tn", require("neotest").run.run, "[N]earest")
       map("n", "<leader>tc", function()
         require("neotest").run.run(vim.fn.expand("%"))
-      end, { desc = "Run [t]est [c]urrent file" })
-      map("n", "<leader>ts", require("neotest").run.stop, { desc = "Run [t]est [s]top" })
-      map("n", "<leader>ta", require("neotest").run.stop, { desc = "Run [t]est [a]ttach" })
-      map("n", "<leader>td", require("neotest").run.stop, { desc = "Run [t]est [d]ebug" })
+      end, "[C]urrent file")
     end,
   },
 }

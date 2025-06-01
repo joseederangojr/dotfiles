@@ -10,7 +10,7 @@ return {
         { "<leader>l_", hidden = true },
         { "<leader>s", group = "[S]earch" },
         { "<leader>s_", hidden = true },
-        { "<leader>t", group = "[T]est" },
+        { "<leader>t", group = "[T]est or [T]oggle" },
         { "<leader>t_", hidden = true },
         { "<leader>r", group = "[R]est" },
         { "<leader>r_", hidden = true },

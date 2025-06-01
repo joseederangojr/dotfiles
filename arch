@@ -68,12 +68,9 @@ aur_packages=(
     fd
     ffmpeg
     file
-    firefox
     fzf
     git
-    google-chrome
     imagemagick
-    inter-font
     jq
     kitty
     kmonad
@@ -86,28 +83,20 @@ aur_packages=(
     nb
     neovim
     nitrogen
-    nvidia-container-toolkit
-    nvidia-dkms
     openssh
-    otf-monaspace
-    otf-monaspace-nerd
     papirus-folders-catppuccin-git
     papirus-icon-theme
-    parted
     p7zip
     picom
     playerctl
     polybar
     poppler
-    python-pip
     qmk
     qt5ct
     qt6ct
-    qutebrowser
     resvg
     ripgrep
     rofi
-    rofi-rbw
     screenkey
     slop
     starship

@@ -64,6 +64,4 @@ cask "qmk-toolbox"
 
 # Fonts
 cask "font-symbols-only-nerd-font"
-cask "font-inter"
-cask "font-monaspace"
-cask "font-monaspace-nerd-font"
+cask "font-maple-mono-nf-cn"

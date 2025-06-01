@@ -27,11 +27,13 @@ return {
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
 
-      local builtin = require'telescope.builtin'
+      local builtin = require("telescope.builtin")
       local map = vim.keymap.set
       map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
       map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-      map("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+      map("n", "<leader>sf", function()
+        builtin.find_files({ hidden = true, follow = true })
+      end, { desc = "[S]earch [F]iles" })
       map("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
       map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
       map("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
@@ -54,7 +56,6 @@ return {
       map("n", "<leader>sn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
       end, { desc = "[S]earch [N]eovim files" })
-
     end,
   },
 }
