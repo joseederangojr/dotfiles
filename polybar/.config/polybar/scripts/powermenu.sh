@@ -4,7 +4,8 @@
 ## Mail    : adi1090x@gmail.com
 ## Github  : @adi1090x
 ## Twitter : @adi1090x
-dir="$HOME/.config/rofi/themes"
+
+dir="~/.config/polybar/scripts/rofi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 rofi_command="rofi -no-config -theme $dir/powermenu.rasi"
@@ -92,4 +93,3 @@ case $chosen in
         fi
         ;;
 esac
-

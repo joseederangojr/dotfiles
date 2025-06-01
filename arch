@@ -51,12 +51,14 @@ aur_packages=(
     linux
     linux-firmware
     bat
+    betterlockscreen
     bluez
     bluez-tools
     brave-bin
     brightnessctl
     bspwm
     btop
+    calc
     catppuccin-gtk-theme-mocha
     curl
     diff-so-fancy
@@ -82,6 +84,7 @@ aur_packages=(
     maplemono-nf-cn-unhinted
     nb
     neovim
+    networkmanager-dmenu
     nitrogen
     openssh
     papirus-folders-catppuccin-git

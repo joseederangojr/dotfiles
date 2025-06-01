@@ -1,0 +1,131 @@
+* {
+    baselatte:      #EFF1F5FF;
+    basefrappe:     #303446FF;
+    basemacchiato:  #24273AFF;
+    basemocha:      #1E1E2EFF;
+
+    mantlelatte:    #E6E9EFFF;
+    mantlefrappe:   #292C3CFF;
+    mantlemacchiato:#1E2030FF;
+    mantlemocha:    #181825FF;
+
+    crustlatte:     #DCE0E8FF;
+    crustfrappe:    #232634FF;
+    crustmacchiato: #181926FF;
+    crustmocha:     #11111BFF;
+
+    mauvelatte:       #8839EFFF;
+    mauvefrappe:      #CA9EE6FF;
+    mauvemacchiato:   #C6A0F6FF;
+    mauvemocha:       #DDB6F2FF;
+
+    pinklatte:        #EA76CBFF;
+    pinkfrappe:       #F5C2E7FF;
+    pinkmacchiato:    #F5BDE6FF;
+    pinkmocha:        #F5C2E7FF;
+
+    redlatte:         #D20F39FF;
+    redfrappe:        #E78284FF;
+    redmacchiato:     #ED8796FF;
+    redmocha:         #F38BA8FF;
+
+    rosewaterlatte:   #DC8A78FF;
+    rosewaterfrappe:  #F2D5CFFF;
+    rosewatermacchiato:#F4DBDFF6;
+    rosewatermocha:   #F5E0DCFF;
+
+    flamingolatte:    #DD7878FF;
+    flamingofrappe:   #EED6D6FF;
+    flamingomacchiato:#F0C6C6FF;
+    flamingomocha:    #F38BA8FF;
+
+    maroonlatte:      #E64553FF;
+    maroonfrappe:     #EA999CFF;
+    maroonmacchiato:  #EE99A0FF;
+    maroonmocha:      #EBA0ACFF;
+
+    peachlatte:       #FE640BFF;
+    peachfrappe:      #EF9F76FF;
+    peachmacchiato:   #F5A97FFF;
+    peachmocha:       #FAB387FF;
+
+    yellowlatte:      #DF8E1DFF;
+    yellowfrappe:     #E5C890FF;
+    yellowmacchiato:  #EED49FFF;
+    yellowmocha:      #F9E2AFFF;
+
+    greenlatte:       #40A02BFF;
+    greenfrappe:      #A6D189FF;
+    greenmacchiato:   #A6DA95FF;
+    greenmocha:       #A6E3A1FF;
+
+    teallatte:        #179299FF;
+    tealfrappe:       #81C8BEFF;
+    tealmacchiato:    #8BD5CAFF;
+    tealmocha:        #94E2D5FF;
+
+    skylatte:         #04A5E5FF;
+    skyfrappe:        #99D1DBFF;
+    skymacchiato:     #91D7E3FF;
+    skymocha:         #89DCEBFF;
+
+    sapphirelatte:    #209FB5FF;
+    sapphirefrappe:   #85C1DCFF;
+    sapphiremacchiato:#7DC4E4FF;
+    sapphiremocha:    #74C7ECFF;
+
+    bluelatte:        #1E66F5FF;
+    bluefrappe:       #8CAAEEFF;
+    bluemacchiato:    #8AADF4FF;
+    bluemocha:        #89B4FAFF;
+
+    lavenderlatte:    #7287FDFF;
+    lavenderfrappe:   #B7BDF8FF;
+    lavendermacchiato:#B7BDF8FF;
+    lavendermocha:    #B4BEFEFF;
+
+    textlatte:        #4C4F69FF;
+    textfrappe:       #C6D0F5FF;
+    textmacchiato:    #CAD3F5FF;
+    textmocha:        #CDD6F4FF;
+
+    subtext1latte:    #5C5F77FF;
+    subtext1frappe:   #B5BFE2FF;
+    subtext1macchiato:#BAC2F0FF;
+    subtext1mocha:    #BAC2F0FF;
+
+    subtext0latte:    #6C6F85FF;
+    subtext0frappe:   #A5ADCEFF;
+    subtext0macchiato:#A5ADCBFF;
+    subtext0mocha:    #A6ADC8FF;
+
+    overlay2latte:    #7C7F93FF;
+    overlay2frappe:   #9399B2FF;
+    overlay2macchiato:#939AB7FF;
+    overlay2mocha:    #9399B2FF;
+
+    overlay1latte:    #8C8FA1FF;
+    overlay1frappe:   #7F849CFF;
+    overlay1macchiato:#7F849CFF;
+    overlay1mocha:    #7F849CFF;
+
+    overlay0latte:    #9CA0B0FF;
+    overlay0frappe:   #6C7086FF;
+    overlay0macchiato:#6C7086FF;
+    overlay0mocha:    #6C7086FF;
+
+    surface2latte:    #ACB0BEFF;
+    surface2frappe:   #585B70FF;
+    surface2macchiato:#585B70FF;
+    surface2mocha:    #45475AFF;
+
+    surface1latte:    #BCC0CCFF;
+    surface1frappe:   #45475AFF;
+    surface1macchiato:#45475AFF;
+    surface1mocha:    #313244FF;
+
+    surface0latte:    #CCD0DAFF;
+    surface0frappe:   #313244FF;
+    surface0macchiato:#313244FF;
+    surface0mocha:    #1E1E2EFF;
+}

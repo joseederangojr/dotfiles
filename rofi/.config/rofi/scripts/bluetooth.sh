@@ -17,7 +17,8 @@
 #   Arch repositories: rofi, bluez-utils (contains bluetoothctl)
 
 # Constants
-divider="---------"
+dir="$HOME/.config/rofi/themes"
+
 goback="Back"
 
 # Checks if bluetooth controller is powered on
@@ -229,14 +230,14 @@ device_menu() {
     fi
     paired=$(device_paired $mac)
     trusted=$(device_trusted $mac)
-    options="$connected\n$paired\n$trusted\n$divider\n$goback\nExit"
+    options="$connected\n$paired\n$trusted\n$goback\nExit"
 
     # Open rofi menu, read chosen option
     chosen="$(echo -e "$options" | $rofi_command "$device_name")"
 
     # Match chosen option to command
     case $chosen in
-        "" | $divider)
+        "")
             echo "No option chosen."
             ;;
         $connected)
@@ -270,7 +271,7 @@ show_menu() {
         discoverable=$(discoverable_on)
 
         # Options passed to rofi
-        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        options="$devices\n$power\n$scan\n$pairable\n$discoverable\nExit"
     else
         power="Power: off"
         options="$power\nExit"
@@ -281,7 +282,7 @@ show_menu() {
 
     # Match chosen option to command
     case $chosen in
-        "" | $divider)
+        "")
             echo "No option chosen."
             ;;
         $power)
@@ -305,7 +306,7 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu -no-fixed-num-lines -yoffset -100 -i -p"
+rofi_command="rofi -dmenu -no-fixed-num-lines -yoffset -100 -i -p  -theme $dir/styles.rasi"
 
 case "$1" in
     --status)
