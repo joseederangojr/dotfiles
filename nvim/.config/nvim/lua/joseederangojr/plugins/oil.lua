@@ -9,7 +9,7 @@ return {
       end,
     },
     delete_to_trash = true,
-    use_default_keymaps = true,
+    use_default_keymaps = false,
     keymaps = {
       ["g?"] = { "actions.show_help", mode = "n" },
       ["<CR>"] = "actions.select",
