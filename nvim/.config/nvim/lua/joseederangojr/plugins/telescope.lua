@@ -32,7 +32,7 @@ return {
       map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
       map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
       map("n", "<leader>sf", function()
-        builtin.find_files({ hidden = true, follow = true })
+        builtin.find_files({ hidden = true, follow = true, no_ignore = false, no_ignore_parent = false })
       end, { desc = "[S]earch [F]iles" })
       map("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
       map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })

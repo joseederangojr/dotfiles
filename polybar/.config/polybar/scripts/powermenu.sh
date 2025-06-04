@@ -61,7 +61,7 @@ case $chosen in
 		if [[ -f /usr/bin/i3lock ]]; then
 			i3lock
 		elif [[ -f /usr/bin/betterlockscreen ]]; then
-			betterlockscreen -l
+			betterlockscreen -w -l
 		fi
         ;;
     $suspend)

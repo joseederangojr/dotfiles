@@ -78,11 +78,11 @@ super  + space
 
 # make sxhkd reload its configuration files:
 super + Escape
-	Pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd
 
 # rofi locate
 super + Return
-	rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/shades/scripts/rofi/launcher.rasi -show-icons -drun-icon-theme papirus
+	$HOME/.config/rofi/scripts/launcher.sh		
 # rofi-bluetooth
 super + b
 	$HOME/.config/rofi/scripts/bluetooth.sh	
@@ -96,7 +96,7 @@ super + x
 
 # rofi exec
 super + r 
-	bash -c "$(rofi -dmenu -p 'Run command')"
+	bash -c "$(rofi -dmenu -p 'Run command' -theme ~/.config/rofi/themes/styles.rasi)"
 
 # Terminal
 super + ctrl + t

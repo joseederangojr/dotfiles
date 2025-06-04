@@ -24,9 +24,9 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export XDG_HOME_CONFIG="$HOME/.config"
 
 # zsh
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CUSTOM="$ZSH/custom"
-export ZSH_PLUGINS="$ZSH/plugins"
+export ZSH_DIR=$HOME/.zsh
+export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
+
 
 
 # Programs

@@ -43,6 +43,8 @@ alias gu='git pull'
 # Aliases: docker
 alias d='docker'
 alias dc='docker compose'
+alias dcud='dc up -d'
+alias dcd='dc down'
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias dl='docker logs --tail=100'
 
@@ -57,6 +59,7 @@ alias p='php'
 alias c='composer'
 alias cr='c require'
 alias ci='c install'
+alias crd='c run dev'
 alias cda='c dump autoload'
 alias pa='php artisan'
 
@@ -76,7 +79,10 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 alias rg="rg --hidden --smart-case --glob='!.git/' --no-search-zip --trim --colors=line:fg:black --colors=line:style:bold --colors=path:fg:magenta --colors=match:style:nobold"
 
 # Aliases: systemd
-alias sd='sudo systemctl'
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
+alias status='sudo systemctl status'
+alias restart='sudo systemctl restart'
 alias sdu='systemctl --user'
 alias jd='journalctl --no-pager'
 
@@ -87,8 +93,14 @@ alias free='free --human'
 
 
 # Aliases: Node
-alias pn='pnpm'
-alias pnx='pnpm dlx'
+alias n='pnpm'
+alias nx='n dlx'
+alias nrd='n run dev'
+alias nrb='n run build'
+alias nrt='n run test'
+alias nrl='n run lint'
+alias nrf='n run format'
+alias nrc='n run check'
 
 # Aliases: cat
 alias cat="bat --theme=\"Catppuccin Mocha\""
@@ -120,8 +132,9 @@ setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 
 # Auto complete
-fpath=($ZSH_PLUGINS/zsh-completions/src $fpath)
+fpath=($ZSH_PLUGIN_DIR/zsh-completions/src $fpath)
 autoload -U compinit && compinit -C
+
 # _complete is base completer
 # _approximate will fix completion if there is no matches
 # _extensions will complete glob patters with extensions
@@ -142,7 +155,6 @@ zstyle ':completion:*' use-cache true
 
 # oh-my-zsh
 source $HOME/.zprofile
-source $ZSH/oh-my-zsh.sh
 # Config
 
 # Starship.rs
@@ -205,14 +217,15 @@ alias cd="z"
 # Direnv
 eval "$(direnv hook zsh)"
 
-source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ZSH Plugin: Auto suggesions
+source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
-
-source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# ZSH Plugin: Syntax Highlighting
+source $ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_MAXLENGTH=120
