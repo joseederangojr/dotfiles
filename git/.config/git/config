@@ -90,3 +90,9 @@
 
 [url "git@github.com:joseederangojr/"]
     insteadOf = "me:"
+
+[url "git@codeberg.org/"]
+    insteadOf = "cb:"
+
+[url "git@github.com:joseederangojr/"]
+    insteadOf = "meh:"
