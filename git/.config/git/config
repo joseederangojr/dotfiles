@@ -94,5 +94,6 @@
 [url "git@codeberg.org/"]
     insteadOf = "cb:"
 
-[url "git@github.com:joseederangojr/"]
-    insteadOf = "meh:"
+# conditional configs
+[includeIf "gitdir:~/Dev/mrge/"]
+    path = config.d/mrge

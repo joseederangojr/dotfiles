@@ -1,4 +1,3 @@
 !.gitignore
-.env*
-!.env.example
 .DS_Store
+mise.toml

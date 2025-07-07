@@ -1,3 +1,7 @@
+# oh-my-zsh
+source $HOME/.zprofile
+source $ZSH_OMZ/oh-my-zsh.sh
+
 # functions
 function  gcm() { git commit --message "$*" }
 function gbda() {
@@ -41,6 +45,9 @@ alias gu='git pull'
 
 
 # Aliases: docker
+if command -v podman >/dev/null 2>&1; then
+  alias docker='podman'
+fi
 alias d='docker'
 alias dc='docker compose'
 alias dcud='dc up -d'
@@ -153,8 +160,6 @@ zstyle ':completion:*' ignored-patterns '.git'
 zstyle ':completion:*' rehash false  # improves performance
 zstyle ':completion:*' use-cache true
 
-# oh-my-zsh
-source $HOME/.zprofile
 # Config
 
 # Starship.rs

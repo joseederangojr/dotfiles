@@ -19,7 +19,8 @@ echo -e "${GREEN}Installed xcode-select ${RESET}"
 # homebrew
 echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/usr/local/bin/brew shellenv)"
+BREW_BIN=$(which brew)
+eval "$($BREW_BIN shellenv)"
 echo -e "${CYAN}Installing ${BOLD}packages using brew bundle${RESET}..."
 brew bundle
 brew install openssl@1.1 --force
@@ -38,8 +39,9 @@ fi
 echo -e "${GREEN}zsh configured ${RESET}"
 
 # mise
+MISE_BIN=$(which mise)
 echo -e "${CYAN}Setting up ${BOLD}mise${RESET}..."
-eval "$(/usr/local/bin/mise activate zsh)"
+eval "$($MISE_BIN activate zsh)"
 export PATH="$PATH"
 export LDFLAGS="$LDFLAGS"
 export CPPFLAGS="$CPPFLAGS"

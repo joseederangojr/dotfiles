@@ -26,6 +26,7 @@ export XDG_HOME_CONFIG="$HOME/.config"
 # zsh
 export ZSH_DIR=$HOME/.zsh
 export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
+export ZSH_OMZ=$HOME/.ohmyzsh
 
 
 
@@ -57,6 +58,12 @@ FZF_DEFAULT_OPTS_ARR=(
 )
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
+
+# Colima
+
+export COLIMA_VM="default"
+export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
+export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
 
 # Settings: less
 export LESS='-cigRS -j4 -x4 -#5 -z-10'

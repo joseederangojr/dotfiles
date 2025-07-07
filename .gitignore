@@ -1,2 +1,5 @@
 archlinux/yazi/plugins/bat.yazi
 ssh/.ssh/*_*
+zed/.config/zed/
+vscode/.vscode/
+!zed/.config/zed/*.json
