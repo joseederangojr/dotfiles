@@ -160,12 +160,10 @@ automatically-unhide-macos-hidden-apps = true
 
     down = 'volume down'
     up = 'volume up'
+    left = 'resize smart -50'
+    right = 'resize smart +50'
+
     shift-down = ['volume set 0', 'mode main']
-
-[[on-window-detected]]
-if.app-id = 'com.brave.Browser.app.fmgjjmmmlfnkbppncabfkddbjimcfncm'
-run = 'move-node-to-workspace 1'
-
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
@@ -185,9 +183,15 @@ if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
+if.app-id = 'com.tinyapp.TablePlus'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace 5'
+
+

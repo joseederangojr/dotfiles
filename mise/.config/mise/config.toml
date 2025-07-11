@@ -5,3 +5,6 @@ go = "latest"
 node = "latest"
 php = "latest"
 rust = "latest"
+
+[settings]
+experimental = true

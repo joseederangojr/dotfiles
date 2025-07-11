@@ -2,10 +2,6 @@
 # Editor
 export EDITOR=nvim
 
-# GPG TTY
-export GPG_TTY=$(tty)
-
-
 # Local binaries
 export PATH="$PATH:$HOME/.local/bin"
 

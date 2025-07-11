@@ -14,8 +14,8 @@ return {
       keymaps = {
         ["g?"] = { "actions.show_help", mode = "n" },
         ["<CR>"] = "actions.select",
-        ["gv"] = { "actions.select", opts = { vertical = true } },
-        ["gh"] = { "actions.select", opts = { horizontal = true } },
+        ["gh"] = { "actions.select", opts = { vertical = true } },
+        ["gv"] = { "actions.select", opts = { horizontal = true } },
         ["gt"] = { "actions.select", opts = { tab = true } },
         ["gp"] = "actions.preview",
         ["gc"] = { "actions.close", mode = "n" },

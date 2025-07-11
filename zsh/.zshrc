@@ -3,10 +3,6 @@ source $HOME/.zprofile
 source $ZSH_OMZ/oh-my-zsh.sh
 
 # functions
-function  gcm() { git commit --message "$*" }
-function gbda() {
-  git branch | command grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch)|$(git_current_branch))\s*$)" | command xargs git branch --delete 2>/dev/null
-}
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -22,92 +18,28 @@ alias ls='l'
 alias la='l -l --time-style="+%Y-%m-%d %H:%M" --no-permissions --octal-permissions'
 alias tree='l --tree'
 
-# Aliases: git
-alias ga='git add'
-alias gap='ga --patch'
-alias gb='git branch'
-alias gba='gb --all'
-alias gc='git commit'
-alias gca='gc --amend --no-edit'
-alias gce='gc --amend'
-alias gco='git checkout'
-alias gcl='git clone --recursive'
-alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
-alias gds='gd --staged'
-alias gi='git init'
-alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n"'
-alias gm='git merge'
-alias gn='git checkout -b'
-alias gp='git push'
-alias gr='git reset'
-alias gs='git status --short'
-alias gu='git pull'
-
-
 # Aliases: docker
-if command -v podman >/dev/null 2>&1; then
-  alias docker='podman'
-fi
 alias d='docker'
 alias dc='docker compose'
-alias dcud='dc up -d'
-alias dcd='dc down'
-alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
-alias dl='docker logs --tail=100'
 
 # Aliases: tmux
 alias ta='tmux attach'
-alias tl='tmux list-sessions'
-alias tn='tmux new-session -s'
 alias tx='tmux kill-server'
 
 # Aliases: PHP/Composer
 alias p='php'
 alias c='composer'
-alias cr='c require'
-alias ci='c install'
-alias crd='c run dev'
-alias cda='c dump autoload'
-alias pa='php artisan'
+alias art='php artisan'
 
 # Alias: Laravel
-alias pas='pa serve'
-alias pam='pa make'
-alias pammi='pam:migration'
-alias pammo='pam:model'
-alias pamc='pam:controller'
-alias paq='pa queue'
-alias paqw='paq:work'
-alias pamig='pa migrate'
-alias pamif='pa migrate:fresh'
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 # Aliases: rg
 alias rg="rg --hidden --smart-case --glob='!.git/' --no-search-zip --trim --colors=line:fg:black --colors=line:style:bold --colors=path:fg:magenta --colors=match:style:nobold"
 
-# Aliases: systemd
-alias start='sudo systemctl start'
-alias stop='sudo systemctl stop'
-alias status='sudo systemctl status'
-alias restart='sudo systemctl restart'
-alias sdu='systemctl --user'
-alias jd='journalctl --no-pager'
-
-# Aliases: human-readable
-alias cal='TZ=Asia/Manila cal'
-alias du='du --human-readable'
-alias free='free --human'
-
-
 # Aliases: Node
-alias n='pnpm'
-alias nx='n dlx'
-alias nrd='n run dev'
-alias nrb='n run build'
-alias nrt='n run test'
-alias nrl='n run lint'
-alias nrf='n run format'
-alias nrc='n run check'
+alias n='node'
+alias pn='pnpm'
 
 # Aliases: cat
 alias cat="bat --theme=\"Catppuccin Mocha\""
@@ -204,7 +136,7 @@ export FZF_CTRL_T_OPTS="
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
-  --preview 'tree -C {}'"
+  --preview 'eza --tree --color=always {}'"
 
 source <(fzf --zsh)
 
