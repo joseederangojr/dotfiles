@@ -42,7 +42,7 @@ alias n='node'
 alias pn='pnpm'
 
 # Aliases: cat
-alias cat="bat --theme=\"Catppuccin Mocha\""
+alias bat="bat --theme=\"Catppuccin Mocha\""
 
 
 # Aliases: Zsh Reload
@@ -52,6 +52,12 @@ alias reload="source $HOME/.zshrc"
 alias vim=nvim
 alias v='nvim .'
 alias e='nvim' 
+
+# Aliases kubectl
+alias k=kubectl
+
+# Aliases clear
+alias x=clear
 
 HISTFILE=$HOME/.zsh_history # location of the history file
 HISTFILESIZE=1000000000 # history limit of the file on disk
@@ -70,9 +76,9 @@ setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 
-# Auto complete
-fpath=($ZSH_PLUGIN_DIR/zsh-completions/src $fpath)
-autoload -U compinit && compinit -C
+# Zsh auto completions
+fpath=($ZSH_PLUGIN_DIR/zsh-completions/src $fpath $ZSH_COMPLETIONS_DIR $HOMEBREW_PREFIX/share/zsh/site-functions)
+source $ZSH_PLUGIN_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # _complete is base completer
 # _approximate will fix completion if there is no matches
@@ -154,7 +160,7 @@ alias cd="z"
 # Direnv
 eval "$(direnv hook zsh)"
 
-# ZSH Plugin: Auto suggesions
+# ZSH Plugin: Auto autosuggestions 
 source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'

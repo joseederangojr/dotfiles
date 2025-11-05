@@ -56,6 +56,22 @@ return {
       map("n", "<leader>sn", function()
         builtin.find_files({ cwd = vim.fn.stdpath("config") })
       end, { desc = "[S]earch [N]eovim files" })
+
+      map("n", "<leader>sm", function()
+        builtin.find_files({ cwd = vim.fn.getcwd() .. "/node_modules" })
+      end, { desc = "[S]earch Node [M]odules files" })
+      map("n", "<leader>sv", function()
+        builtin.find_files({ cwd = vim.fn.getcwd() .. "/vendor" })
+      end, { desc = "[S]earch [V]endor files" })
+      map("n", "<leader>s,", function()
+        builtin.find_files({
+          cwd = os.getenv("HOME") .. "/Dev/dotfiles",
+          hidden = true,
+          follow = true,
+          no_ignore = false,
+          no_ignore_parent = false,
+        })
+      end, { desc = '[S]earch Dotfiles ("," for settings)' })
     end,
   },
 }

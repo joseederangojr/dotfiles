@@ -15,7 +15,7 @@ after-startup-command = []
 start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
+enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
@@ -99,8 +99,7 @@ automatically-unhide-macos-hidden-apps = true
     # '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
+    alt-period = 'layout tiles accordion'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     cmd-h = 'focus left'
@@ -153,16 +152,11 @@ automatically-unhide-macos-hidden-apps = true
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
 
-    alt-shift-h = ['join-with left', 'mode main']
-    alt-shift-j = ['join-with down', 'mode main']
-    alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
-
-    down = 'volume down'
-    up = 'volume up'
-    left = 'resize smart -50'
-    right = 'resize smart +50'
-
+    left = ['join-with left', 'mode main']
+    down = ['join-with down', 'mode main']
+    up = ['join-with up', 'mode main']
+    right = ['join-with right', 'mode main']
+ 
     shift-down = ['volume set 0', 'mode main']
 
 [[on-window-detected]]
@@ -194,4 +188,6 @@ run = 'move-node-to-workspace 5'
 if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace 5'
 
-
+[[on-window-detected]]
+if.app-id = 'com.apple.QuickTimePlayerX'
+run = 'layout floating'

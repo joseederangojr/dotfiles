@@ -17,6 +17,7 @@ return {
         "javascript",
         "typescript",
         "json",
+        "jsonc",
         "yaml",
       },
       auto_install = true,

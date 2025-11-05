@@ -8,3 +8,11 @@ rust = "latest"
 
 [settings]
 experimental = true
+
+[env]
+_.file = '.env'
+_.path = [
+    "{{config_root}}/node_modules/.bin",
+    "{{config_root}}/vendor/bin",
+]
+

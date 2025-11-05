@@ -1,4 +1,4 @@
-
+source $HOME/.profile
 # Editor
 export EDITOR=nvim
 
@@ -21,15 +21,18 @@ export XDG_HOME_CONFIG="$HOME/.config"
 
 # zsh
 export ZSH_DIR=$HOME/.zsh
+export ZSH_COMPLETIONS_DIR="$ZSH_DIR/completions"
 export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
 export ZSH_OMZ=$HOME/.ohmyzsh
 
-
+# Homebrew
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 
 # Programs
 export PAGER='less'
 
 export VISUAL="${EDITOR}"
+
 
 # Settings: fzf
 FZF_DEFAULT_OPTS_ARR=(
@@ -67,3 +70,4 @@ export LESS='-cigRS -j4 -x4 -#5 -z-10'
 # Cleanup environment variables
 unset MAIL
 unset DEBUGINFOD_URLS
+
