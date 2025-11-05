@@ -1,66 +1,23 @@
--- return {
---   {
---     "nvim-neotest/neotest",
---     enabled = false,
---     dependencies = {
---       "nvim-neotest/nvim-nio",
---       "nvim-lua/plenary.nvim",
---       "antoinemadec/FixCursorHold.nvim",
---       "nvim-treesitter/nvim-treesitter",
---       "V13Axel/neotest-pest",
---       -- "marilari88/neotest-vitest",
---       -- "olimorris/neotest-phpunit",
---       -- "nvim-neotest/neotest-jest",
---       -- "arthur944/neotest-bun",
---     },
---     opts = {
---       adapters = {
---         -- require("neotest-vitest"),
---         -- require("neotest-phpunit"),
---         -- require("neotest-jest"),
---         -- require("neotest-bun"),
---         require("neotest-pest")({
---           parallel = math.min(16, vim.loop.cpu_info() and #vim.loop.cpu_info() or 4), -- Dynamic parallelism
---         }),
---       },
---     },
---     config = function(_, opts)
---       local neotest = require("neotest")
---       neotest.setup(opts)
---
---       local map = function(mode, lhs, rhs, desc)
---         vim.keymap.set(mode, lhs, rhs, { desc = "Test: " .. desc })
---       end
---       map("n", "<leader>tn", neotest.run.run, "Run Nearest")
---       map("n", "<leader>tc", function()
---         neotest.run.run(vim.fn.expand("%"))
---       end, "Run Current File")
---     end,
---   },
--- }
 return {
   "nvim-neotest/neotest",
-  dependencies = { "nvim-neotest/nvim-nio", "V13Axel/neotest-pest" },
+  dependencies = {
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "V13Axel/neotest-pest",
+    "arthur944/neotest-bun",
+  },
   opts = {
-    -- Can be a list of adapters like what neotest expects,
-    -- or a list of adapter names,
-    -- or a table of adapter names, mapped to adapter configs.
-    -- The adapter will then be automatically loaded with the config.
     adapters = {
-      "neotest-pest",
+      ["neotest-pest"] = {},
+      ["neotest-bun"] = {},
     },
-    -- Example for loading neotest-golang with a custom config
-    -- adapters = {
-    --   ["neotest-golang"] = {
-    --     go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
-    --     dap_go_enabled = true,
-    --   },
-    -- },
     status = { virtual_text = true },
     output = { open_on_run = true },
     quickfix = {
       open = function()
-        if LazyVim.has("trouble.nvim") then
+        if pcall(require, "trouble") then
           require("trouble").open({ mode = "quickfix", focus = false })
         else
           vim.cmd("copen")
@@ -73,16 +30,14 @@ return {
     vim.diagnostic.config({
       virtual_text = {
         format = function(diagnostic)
-          -- Replace newline and tab characters with space for more compact diagnostics
           local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
           return message
         end,
       },
     }, neotest_ns)
 
-    if LazyVim.has("trouble.nvim") then
+    if pcall(require, "trouble") then
       opts.consumers = opts.consumers or {}
-      -- Refresh and auto close trouble after running tests
       ---@type neotest.Consumer
       opts.consumers.trouble = function(client)
         client.listeners.results = function(adapter_id, results, partial)
@@ -144,16 +99,14 @@ return {
   end,
   -- stylua: ignore
   keys = {
-    {"<leader>t", "", desc = "+test"},
-    -- { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to Test (Neotest)" },
-    { "<leader>tc", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File (Neotest)" },
-    -- { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "Run All Test Files (Neotest)" },
-    { "<leader>tn", function() require("neotest").run.run() end, desc = "Run Nearest (Neotest)" },
+    { "<leader>tc", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "[T]est [C]urrent File" },
+    { "<leader>ta", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "[T]est [A]ll Files" },
+    { "<leader>tn", function() require("neotest").run.run() end, desc = "[T]est [N]earest" },
     -- { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run Last (Neotest)" },
     -- { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary (Neotest)" },
     -- { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output (Neotest)" },
-    -- { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel (Neotest)" },
-    -- { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop (Neotest)" },
+    { "<leader>to", function() require("neotest").output_panel.toggle() end, desc = "[T]est T[o]ggle Panel" },
+    { "<leader>ts", function() require("neotest").run.stop() end, desc = "[T]est [S]top" },
     -- { "<leader>tw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "Toggle Watch (Neotest)" },
   },
 }

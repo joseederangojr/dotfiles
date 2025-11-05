@@ -1,13 +1,24 @@
+[alias]
+
 [tools]
 bun = "latest"
 deno = "latest"
 go = "latest"
 node = "latest"
-php = "latest"
+"ubi:adwinying/php" = "latest"
+"ubi:composer/composer" = "latest"
 rust = "latest"
 
 [settings]
 experimental = true
+
+[hooks]
+postinstall = """
+composer_dir=$(mise where ubi:composer/composer)
+if [ -f "$composer_dir/composer.phar" ]; then
+  mv "$composer_dir/composer.phar" "$composer_dir/composer"
+fi
+"""
 
 [env]
 _.file = '.env'
@@ -15,4 +26,3 @@ _.path = [
     "{{config_root}}/node_modules/.bin",
     "{{config_root}}/vendor/bin",
 ]
-

@@ -27,6 +27,10 @@ vim.opt.undofile = true
 vim.opt.colorcolumn = "120"
 vim.opt.hlsearch = true
 
+-- luarocks paths
+package.path = package.path .. ";/Users/joseederangojr/.luarocks/share/lua/5.1/?.lua;/Users/joseederangojr/.luarocks/share/lua/5.1/?/init.lua"
+package.cpath = package.cpath .. ";/Users/joseederangojr/.luarocks/lib/lua/5.1/?.so"
+
 -- hover.nvim
 vim.o.mousemoveevent = true
 -- vim: ts=2 sts=2 sw=2 et
