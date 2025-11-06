@@ -1,22 +1,13 @@
 #!/usr/bin/env bash
 
-# Define color variables
-RESET='\033[0m'
-BOLD='\033[1m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-RED='\033[0;31m'
+#!/usr/bin/env bash
 
-is_package_installed() {
-    if pacman -Q "$1" &>/dev/null; then
-        echo -e "${YELLOW}Package '$1' is already installed.${RESET}"
-        return 0
-    else
-        return 1
-    fi
-}
+# Source modular functions
+source "$(dirname "$0")/lib/common.sh"
+source "$(dirname "$0")/lib/zsh.sh"
+source "$(dirname "$0")/lib/mise.sh"
+source "$(dirname "$0")/lib/yazi.sh"
+source "$(dirname "$0")/lib/arch.sh"
 
 #############################
 #                           #
@@ -24,25 +15,8 @@ is_package_installed() {
 #                           #
 #############################
 
-
-# Create necessary directories if they do not already exist
-echo -e "${GREEN}Setting up directories...${RESET}"
-mkdir -p $HOME/Dev        # Development directory
-mkdir -p $HOME/pkgs       # Packages directory
-mkdir -p $HOME/.config    # Configuration directory
-mkdir -p $HOME/Pictures   # Pictures directory
-
-# Check if yay is installed, and if not, install it
-if ! command -v yay >/dev/null 2>&1; then
-    echo -e "${RED}yay is not installed, installing yay from AUR...${RESET}"
-    git clone https://aur.archlinux.org/yay.git $HOME/pkgs/yay
-    cd $HOME/pkgs/yay || exit
-    makepkg -si --noconfirm
-    git clean -fdx
-    cd "$DOTFILES" || exit
-else
-    echo -e "${YELLOW}yay is already installed.${RESET}"
-fi
+setup_directories
+install_yay
 
 # Install AUR packages using yay (AUR helper)
 echo -e "${BLUE}Installing additional packages from AUR using yay...${RESET}"
@@ -109,7 +83,7 @@ aur_packages=(
     torrent-git
     ttf-nerd-fonts-symbols
     vlc
-    visual-studio-code-bin 
+    visual-studio-code-bin
     wget
     wmctrl
     xclip
@@ -119,114 +93,22 @@ aur_packages=(
     yazi
     zed
     zoxide
-    zsh 
+    zsh
 )
 
-for package in "${aur_packages[@]}"; do
-    if ! is_package_installed "$package"; then
-        echo -e "${CYAN}Installing AUR package '$package'...${RESET}"
-        yay -S --noconfirm "$package"
-    else
-        echo -e "${YELLOW}AUR package '$package' is already installed.${RESET}"
-    fi
-done
+install_aur_packages "${aur_packages[@]}"
 
-# Download wallpapers if the directory doesn't already exist
-if [ ! -d $HOME/Pictures/wallpapers ]; then
-    echo -e "${CYAN}Downloading wallpapers from GitHub repository...${RESET}"
-    git clone https://github.com/orangci/walls-catppuccin-mocha.git $HOME/Pictures/wallpapers
-else
-    echo -e "${YELLOW}Wallpapers already downloaded.${RESET}"
-fi
-
-# Configure tmux if it's not already configured
-if [ ! -d $HOME/.tmux/plugins/tpm ]; then
-    echo -e "${CYAN}Setting up tmux plugin manager (tpm)...${RESET}"
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-else
-    echo -e "${YELLOW}tmux plugin manager is already installed.${RESET}"
-fi
-
-# Install mise-en-place if it's not already installed
-if  command -v mise >/dev/null 2>&1; then
-    echo -e "${CYAN}mise-en-place is not installed, installing it...${RESET}"
-    curl https://mise.run | sh
-    eval "$($HOME/.local/bin/mise active mise)"
-    echo -e "${CYAN}[mise-enplace]: Installing PHP dependencies...${RESET}"
-    
-    # Install necessary dependencies for mise-en-place
-    php_dependencies=(
-      autoconf bison base-devel curl gettext git gd libcurl-compat
-      libedit icu libjpeg-turbo mariadb-libs oniguruma libpng postgresql-libs
-      readline sqlite openssl pkgconf re2c zlib libxml2 libzip
-    )
-    for package in "${php_dependencies[@]}"; do
-        if ! is_package_installed "$package"; then
-            echo -e "${CYAN}Installing PHP dependency '$package'...${RESET}"
-            yay -S --noconfirm "$package"
-        else
-            echo -e "${YELLOW}PHP dependency '$package' is already installed.${RESET}"
-        fi
-    done
-else
-    echo -e "${YELLOW}mise-en-place is already installed.${RESET}"
-fi
-
-if  command -v papirus-folders >/dev/null 2>&1; then
-    echo -e "${CYAN}configuring gtk...${RESET}"
-    papirus-folders -C cat-mocha-maroon
-fi
-
-ZSH_DIR=$HOME/.zsh
-ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
-if [ ! -d $ZSH_DIR ]; then
-    mkdir $ZSH_DIR
-    mkdir -p $ZSH_PLUGIN_DIR
-    git clone https://github.com/zsh-users/zsh-completions.git $ZSH_PLUGIN_DIR/zsh-completions 
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGIN_DIR/zsh-autosuggestions
-fi
-
-
-# Install yazi plugins 
-if command -v yazi >/dev/null 2>&1; then
-    echo -e "${CYAN}[yazi]: Installing yazi plugins...${RESET}"
-    ya pack -a yazi-rs/plugins:smart-paste
-    ya pack -a yazi-rs/plugins:smart-filter
-    ya pack -a yazi-rs/plugins:smart-enter
-
-    mkdir -p ~/.config/yazi/plugins
-    git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi 
-fi
-
-if ! command -v dmenu >/dev/null 2>&1; then
-    git clone https://github.com/joseederangojr/dmenu.git  $HOME/pkgs/dmenu
-    cd $HOME/pkgs/dmenu && sudo make clean install
-fi
-
-
-if command -v docker >/dev/null 2>&1; then
-    echo -e "${CYAN}Installing docker${RESET}"
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    newgrp docker
-    docker run hello-world
-fi
-
-if ! systemctl is-active --quiet "bluetooth.service"; then
-    echo -e "${CYAN}Enabling bluetooth${RESET}"
-    sudo systemctl enable bluetooth 
-fi
-
-if ! systemctl is-active --quiet "ly.service"; then
-    echo -e "${CYAN}Enabling ly${RESET}"
-    sudo systemctl enable ly
-fi
+download_wallpapers
+setup_tmux_tpm
+setup_mise
+configure_gtk
+setup_zsh
+setup_yazi_plugins
+setup_dmenu
+setup_docker
+enable_services
 
 echo -e "${CYAN}Linking stow${RESET}..."
-stow --target=$HOME --adopt --verbose zsh zed yazi xinit vscode tmux sxhkd starship ssh screenkey rofi polybar picom nvim mise kitty git dunst bspwm bin bat gtk git btop nb 
-
-echo -e "${CYAN}installing mise tools...${RESET}"
-mise install
+stow --target=$HOME --adopt --verbose zsh zed yazi xinit vscode tmux sxhkd starship ssh screenkey rofi polybar picom nvim mise kitty git dunst bspwm bin bat gtk git btop nb
 
 echo -e "${GREEN}${BOLD}Setup complete. All packages and configurations are installed.${RESET}"

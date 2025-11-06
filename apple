@@ -1,91 +1,26 @@
 #!/usr/bin/env bash
 
-# Define color variables
-RESET='\033[0m'
-BOLD='\033[1m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-RED='\033[0;31m'
+#!/usr/bin/env bash
+
+# Source modular functions
+source "$(dirname "$0")/lib/common.sh"
+source "$(dirname "$0")/lib/zsh.sh"
+source "$(dirname "$0")/lib/mise.sh"
+source "$(dirname "$0")/lib/yazi.sh"
+source "$(dirname "$0")/lib/mac.sh"
 
 mkdir -p $HOME/.local/bin
 
-# xcode
-echo -e "${CYAN}Installing ${BOLD}xcode-select${RESET}..."
-xcode-select --install
-echo -e "${GREEN}Installed xcode-select ${RESET}"
-
-# homebrew
-echo -e "${CYAN}Installing ${BOLD}homebrew${RESET}..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-BREW_BIN=$(which brew)
-eval "$($BREW_BIN shellenv)"
-echo -e "${CYAN}Installing ${BOLD}packages using brew bundle${RESET}..."
-brew bundle
-brew install openssl@1.1 --force
-
-# zsh
-echo -e "${CYAN}Installing ${BOLD}oh-my-zsh${RESET}..."
-ZSH_DIR=$HOME/.zsh
-ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
-if [ ! -d $ZSH_DIR ]; then
-    mkdir $ZSH_DIR
-    mkdir -p $ZSH_PLUGIN_DIR
-    git clone https://github.com/zsh-users/zsh-completions.git $ZSH_PLUGIN_DIR/zsh-completions 
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGIN_DIR/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGIN_DIR/zsh-autosuggestions
-fi
-echo -e "${GREEN}zsh configured ${RESET}"
-
-# mise
-MISE_BIN=$(which mise)
-echo -e "${CYAN}Setting up ${BOLD}mise${RESET}..."
-eval "$($MISE_BIN activate zsh)"
-export PATH="$PATH"
-export LDFLAGS="$LDFLAGS"
-export CPPFLAGS="$CPPFLAGS"
-
-formulae=(autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl@1.1 pkg-config re2c zlib)
-
-# Add bin paths to PATH, and lib/include to LDFLAGS/CPPFLAGS
-for formula in "${formulae[@]}"; do
-  prefix=$(brew --prefix "$formula" 2>/dev/null)
-  if [[ -d "$prefix" ]]; then
-    [[ -d "$prefix/bin" ]] && export PATH="$prefix/bin:$PATH"
-    [[ -d "$prefix/sbin" ]] && export PATH="$prefix/sbin:$PATH"
-    [[ -d "$prefix/lib" ]] && export LDFLAGS="-L$prefix/lib $LDFLAGS"
-    [[ -d "$prefix/include" ]] && export CPPFLAGS="-I$prefix/include $CPPFLAGS"
-  fi
-done
-
-# Optionally deduplicate PATH, LDFLAGS, CPPFLAGS
-PATH=$(awk -v RS=: -v ORS=: '!a[$1]++' <<<"$PATH" | sed 's/:$//')
-LDFLAGS=$(xargs <<<"$LDFLAGS")
-CPPFLAGS=$(xargs <<<"$CPPFLAGS")
-
-# yabai and skhd
-echo -e "${CYAN}Configure skhd and yabai${RESET}..."
-echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
-skhd --start-service
-yabai --start-service
-
-# yazi
-if command -v yazi >/dev/null 2>&1; then
-    echo -e "${CYAN}Installing yazi plugins...${RESET}"
-    mkdir -p ~/.config/yazi/plugins
-    ya pack -a yazi-rs/plugins:smart-paste
-    ya pack -a yazi-rs/plugins:smart-filter
-    ya pack -a yazi-rs/plugins:smart-enter
-    git clone https://github.com/mgumz/yazi-plugin-bat.git ~/.config/yazi/plugins/bat.yazi     
-fi
-
+install_xcode
+setup_homebrew
+setup_oh_my_zsh
+setup_zsh
+setup_mise
+setup_yabai_skhd
+setup_yazi_plugins
 
 # linking configs
 echo -e "${CYAN}Linking stow${RESET}..."
 stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux starship ssh nvim mise kitty git bin bat btop nb aerospace
-
-echo -e "${CYAN}Installing mise tools${RESET}..."
-mise install
 
 echo -e "${GREEN}Installation and setup success${RESET}"

@@ -1,0 +1,79 @@
+name: Lint Shell Scripts
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  shellcheck:
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            container: null
+          - os: macos-latest
+            container: null
+          - os: ubuntu-latest
+            container: archlinux:latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install shellcheck (Ubuntu)
+      if: matrix.os == 'ubuntu-latest' && matrix.container == null
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y shellcheck
+    - name: Install shellcheck (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install shellcheck
+    - name: Install shellcheck (Arch)
+      if: matrix.container == 'archlinux:latest'
+      run: |
+        pacman -Syu --noconfirm shellcheck
+    - name: Run shellcheck on lib scripts
+      run: |
+        shellcheck lib/*.sh
+    - name: Run shellcheck on bin scripts
+      run: |
+        shellcheck bin/.local/bin/*
+    - name: Check script permissions and shebang
+      run: |
+        # Check bin scripts are executable
+        for script in bin/.local/bin/*; do
+          if [[ ! -x "$script" ]]; then
+            echo "Script $script is not executable"
+            exit 1
+          fi
+          if ! head -1 "$script" | grep -q "#!/"; then
+            echo "Script $script missing shebang"
+            exit 1
+          fi
+        done
+        # Check lib scripts have shebang or are sourced
+        for script in lib/*.sh; do
+          if ! head -1 "$script" | grep -q "#!/"; then
+            echo "Lib script $script missing shebang (if it's meant to be executable)"
+          fi
+        done
+    - name: Test tmux-sessionizer script (Ubuntu)
+      if: matrix.os == 'ubuntu-latest' && matrix.container == null
+      run: |
+        sudo apt-get install -y tmux fzf
+        mkdir -p ~/Dev/testproject
+        echo "~/Dev/testproject" | bin/.local/bin/tmux-sessionizer
+    - name: Test tmux-sessionizer script (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install tmux fzf
+        mkdir -p ~/Dev/testproject
+        echo "~/Dev/testproject" | bin/.local/bin/tmux-sessionizer
+    - name: Test tmux-sessionizer script (Arch)
+      if: matrix.container == 'archlinux:latest'
+      run: |
+        pacman -Syu --noconfirm tmux fzf
+        mkdir -p ~/Dev/testproject
+        echo "~/Dev/testproject" | bin/.local/bin/tmux-sessionizer
