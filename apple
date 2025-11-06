@@ -16,7 +16,6 @@ setup_homebrew
 setup_oh_my_zsh
 setup_zsh
 setup_mise
-setup_yabai_skhd
 setup_yazi_plugins
 
 # linking configs
