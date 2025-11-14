@@ -1,0 +1,13 @@
+{
+    "React useState with interface": {
+        "prefix": "rus",
+        "body": [
+            "interface ${1:PlaceHolder} {",
+            "    //",
+            "}",
+            "",
+            "const [${2:placeHolder}, set${3:PlaceHolder}] = React.useState<${1:PlaceHolder}>(${4:1})"
+        ],
+        "description": "Create interface and useState hook"
+    }
+}

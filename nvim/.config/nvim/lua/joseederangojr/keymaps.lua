@@ -28,4 +28,7 @@ map("n", "<C-u>", "<C-u>zz", { desc = "Center after jumo up" })
 map("n", "J", "mzJ`z", { desc = "Fix line joins" })
 map("n", "n", "nzzzv", { desc = "Center next highlight search" })
 map("n", "N", "Nzzzv", { desc = "Center previous highlight search" })
+map("n", "<leader>.", function()
+  vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")
+end, { desc = "Reload Neovim config" })
 -- vim: ts=2 sts=2 sw=2 et

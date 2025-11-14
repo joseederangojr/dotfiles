@@ -14,7 +14,6 @@ function y() {
 
 # Aliases: ls
 alias l='eza -1A --group-directories-first --color=always --git-ignore'
-alias ls='l'
 alias la='l -l --time-style="+%Y-%m-%d %H:%M" --no-permissions --octal-permissions'
 alias tree='l --tree'
 
@@ -79,6 +78,7 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 # Zsh auto completions
 fpath=($ZSH_PLUGIN_DIR/zsh-completions/src $fpath $ZSH_COMPLETIONS_DIR $HOMEBREW_PREFIX/share/zsh/site-functions)
 source $ZSH_PLUGIN_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+complete -C aws_completer aws
 
 # _complete is base completer
 # _approximate will fix completion if there is no matches

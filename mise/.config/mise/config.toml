@@ -8,6 +8,7 @@ node = "latest"
 "ubi:adwinying/php" = "latest"
 "ubi:composer/composer" = "latest"
 rust = "latest"
+pnpm = "latest"
 
 [settings]
 experimental = true

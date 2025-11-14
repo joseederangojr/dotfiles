@@ -9,6 +9,13 @@ return {
           theme = theme,
           section_separators = "",
           component_separators = "",
+          sections = {
+            lualine_z = {
+              {
+                require("opencode").statusline,
+              },
+            },
+          },
         },
       })
     end,
