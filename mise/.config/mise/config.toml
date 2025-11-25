@@ -6,20 +6,12 @@ deno = "latest"
 go = "latest"
 node = "latest"
 "ubi:adwinying/php" = "latest"
-"ubi:composer/composer" = "latest"
 rust = "latest"
 pnpm = "latest"
+"ubi:composer/composer" = "latest"
 
 [settings]
 experimental = true
-
-[hooks]
-postinstall = """
-composer_dir=$(mise where ubi:composer/composer)
-if [ -f "$composer_dir/composer.phar" ]; then
-  mv "$composer_dir/composer.phar" "$composer_dir/composer"
-fi
-"""
 
 [env]
 _.file = '.env'

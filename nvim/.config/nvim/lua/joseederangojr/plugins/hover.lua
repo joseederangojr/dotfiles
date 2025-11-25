@@ -2,19 +2,23 @@ return {
   {
     "lewis6991/hover.nvim",
     config = function()
-      require("hover").setup({
-        init = function()
-          -- Require providers
-          require("hover.providers.lsp")
-          -- require('hover.providers.gh')
-          -- require('hover.providers.gh_user')
-          -- require('hover.providers.jira')
-          -- require('hover.providers.dap')
-          -- require('hover.providers.fold_preview')
-          require("hover.providers.diagnostic")
-          -- require('hover.providers.man')
-          -- require('hover.providers.dictionary')
-        end,
+      local hover = require("hover")
+
+      hover.config({
+        --- List of modules names to load as providers.
+        --- @type (string|Hover.Config.Provider)[]
+        providers = {
+          "hover.providers.lsp",
+          -- "hover.providers.diagnostic",
+          -- "hover.providers.dap",
+          -- "hover.providers.man",
+          -- "hover.providers.dictionary",
+          -- "hover.providers.gh",
+          -- "hover.providers.gh_user",
+          -- "hover.providers.jira",
+          -- "hover.providers.fold_preview",
+          -- "hover.providers.highlight",
+        },
         preview_opts = {
           border = "single",
         },
@@ -23,21 +27,22 @@ return {
         preview_window = false,
         title = true,
         mouse_providers = {
-          "LSP",
+          "hover.providers.lsp",
         },
         mouse_delay = 1000,
       })
+      local set = vim.keymap.set
 
-      local map = vim.keymap.set
-      map("n", "K", require("hover").hover, { desc = "hover.nvim" })
-      map("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-      map("n", "<C-p>", function()
-        require("hover").hover_switch("previous")
-      end, { desc = "hover.nvim (previous source)" })
-      map("n", "<C-n>", function()
-        require("hover").hover_switch("next")
-      end, { desc = "hover.nvim (next source)" })
-      map("n", "<MouseMove>", require("hover").hover_mouse, { desc = "hover.nvim (mouse)" })
+      set("n", "K", hover.open)
+      set("n", "gK", hover.enter, {
+        desc = "Hover enter buffer",
+      })
+      set("n", "gk", hover.close, {
+        desc = "Hover close buffer",
+      })
+      set("n", "<MouseMove>", hover.mouse, {
+        desc = "Hover Mouse Move",
+      })
     end,
   },
 }

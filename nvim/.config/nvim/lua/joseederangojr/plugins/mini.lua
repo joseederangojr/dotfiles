@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.nvim",
+    "nvim-mini/mini.nvim",
     config = function()
       vim.keymap.set({ "n", "x" }, "s", "<Nop>")
       require("mini.ai").setup({ n_lines = 500 })
