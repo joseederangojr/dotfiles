@@ -32,7 +32,6 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      transparent_background = true,
       lsp_styles = {
         underlines = {
           errors = { "undercurl" },

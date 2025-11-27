@@ -26,7 +26,18 @@ export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
 export ZSH_OMZ=$HOME/.ohmyzsh
 
 # Homebrew
-export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+export HOMEBREW_PREFIX=$(brew --prefix)
+export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+
+
+# DBNgin
+if [  -d /Users/Shared/DBngin ];then
+  export PATH=/Users/Shared/DBngin/mysql/8.0.33/bin:$PATH                                                                                                                                                                                             
+  export PATH=/Users/Shared/DBngin/postgresql/17.0/bin:$PATH
+  export PATH=/Users/Shared/DBngin/redis/7.0.0/bin:$PATH                                                                                                                                                                                              
+fi
+
+
 
 # Programs
 export PAGER='less'

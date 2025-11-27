@@ -2,3 +2,4 @@
 .DS_Store
 mise.toml
 oze/
+.neoconf.json

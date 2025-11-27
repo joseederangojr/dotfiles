@@ -5,10 +5,8 @@ bun = "latest"
 deno = "latest"
 go = "latest"
 node = "latest"
-"ubi:adwinying/php" = "latest"
 rust = "latest"
 pnpm = "latest"
-"ubi:composer/composer" = "latest"
 
 [settings]
 experimental = true

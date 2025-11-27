@@ -1,6 +1,8 @@
 return {
   {
     "angelinuxx/npm-lens.nvim",
-    opts = {},
+    opts = {
+      enabled = false,
+    },
   },
 }
