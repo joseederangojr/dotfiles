@@ -75,4 +75,16 @@ return {
       colorscheme = "catppuccin",
     },
   },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "joseederangojr/neotest-tsx",
+    },
+    opts = {
+      adapters = {
+        ["neotest-tsx"] = {},
+      },
+    },
+  },
 }
