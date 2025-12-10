@@ -20,6 +20,14 @@ return {
       { "<leader>E", false },
       { "_", "<leader>fe", desc = "Explorer Snacks (root dir)", remap = true },
       { "-", "<leader>fE", desc = "Explorer Snacks (cwd)", remap = true },
+
+      {
+        "<leader>su",
+        function()
+          Snacks.picker.undo()
+        end,
+        desc = "Undotree",
+      },
     },
   },
   {
@@ -76,14 +84,46 @@ return {
     },
   },
   {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-neotest/nvim-nio",
-      "joseederangojr/neotest-tsx",
-    },
+    "neovim/nvim-lspconfig",
     opts = {
-      adapters = {
-        ["neotest-tsx"] = {},
+      servers = {
+        -- copilot.lua only works with its own copilot lsp server
+        copilot = { enabled = false },
+      },
+    },
+  },
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "pint",
+        "phpstan",
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        php = { "pint", "php_cs_fixer", stop_at_first = true },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        php = { "phpstan", "phpcs" },
+      },
+    },
+  },
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "tsp-server",
       },
     },
   },

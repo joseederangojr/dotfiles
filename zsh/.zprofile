@@ -29,15 +29,8 @@ export ZSH_OMZ=$HOME/.ohmyzsh
 export HOMEBREW_PREFIX=$(brew --prefix)
 export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 
-
-# DBNgin
-if [  -d /Users/Shared/DBngin ];then
-  export PATH=/Users/Shared/DBngin/mysql/8.0.33/bin:$PATH                                                                                                                                                                                             
-  export PATH=/Users/Shared/DBngin/postgresql/17.0/bin:$PATH
-  export PATH=/Users/Shared/DBngin/redis/7.0.0/bin:$PATH                                                                                                                                                                                              
-fi
-
-
+# Krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Programs
 export PAGER='less'
@@ -70,10 +63,6 @@ FZF_DEFAULT_OPTS_ARR=(
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
 
 # Colima
-
-export COLIMA_VM="default"
-export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
-export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
 
 # Settings: less
 export LESS='-cigRS -j4 -x4 -#5 -z-10'

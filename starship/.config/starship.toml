@@ -133,7 +133,6 @@ mantle = "#181825"
 crust = "#11111b"
 
 
-
 # Nerd Font
 [aws]
 symbol = "  "
@@ -224,7 +223,7 @@ symbol = " "
 
 
 [os]
-disabled=false
+disabled = false
 [os.symbols]
 Alpaquita = " "
 Alpine = " "
@@ -310,3 +309,15 @@ symbol = " "
 
 [bun]
 symbol = " "
+
+[kubernetes]
+disabled = false
+detect_folders = ["deployment"]
+detect_files = ["Dockerfile", "docker-compose.yaml", "docker-compose.yml"]
+symbol = "☸ "
+format = '[$symbol$context(\($namespace\)) ](bold blue)'
+style = "bold blue"
+contexts = [
+  { context_pattern = "*:820242940110:*", context_alias = "mrge-platform-dev" },
+  { context_pattern = "*:539247493486:*", context_alias = "mrge-platform-prod" },
+]

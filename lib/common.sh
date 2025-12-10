@@ -11,20 +11,30 @@ RED='\033[0;31m'
 
 # Utility functions
 is_package_installed() {
-    if pacman -Q "$1" &>/dev/null; then
-        echo -e "${YELLOW}Package '$1' is already installed.${RESET}"
-        return 0
-    else
-        return 1
-    fi
+  if pacman -Q "$1" &>/dev/null; then
+    echo -e "${YELLOW}Package '$1' is already installed.${RESET}"
+    return 0
+  else
+    return 1
+  fi
 }
 
 install_aur_packages() {
-    local packages=("$@")
-    for package in "${packages[@]}"; do
-        if ! is_package_installed "$package"; then
-            echo -e "${CYAN}Installing AUR package '$package'...${RESET}"
-            yay -S --noconfirm "$package"
-        fi
-    done
+  local packages=("$@")
+  for package in "${packages[@]}"; do
+    if ! is_package_installed "$package"; then
+      echo -e "${CYAN}Installing AUR package '$package'...${RESET}"
+      yay -S --noconfirm "$package"
+    fi
+  done
 }
+
+setup_silicon() {
+  cd "$HOME/.config/silicon/themes" || exit
+  silicon --build-cache
+}
+
+setup_bat() {
+  bat cache --build
+}
+

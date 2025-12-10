@@ -48,6 +48,7 @@ brew "parallel"
 brew "sshpass"
 brew "stern"
 brew "yq"
+brew "silicon"
 
 # Cask (GUI apps)
 cask "kitty"

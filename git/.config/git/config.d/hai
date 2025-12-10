@@ -1,0 +1,7 @@
+
+[user]
+    email = jose@hai.co.za
+    signingkey = B7E97BC371C62016
+
+[url "git@github.com:mrge-group/"]
+    insteadOf = "mrge:"

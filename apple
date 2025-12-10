@@ -17,9 +17,12 @@ setup_oh_my_zsh
 setup_zsh
 setup_mise
 setup_yazi_plugins
+setup_bat
 
 # linking configs
 echo -e "${CYAN}Linking stow${RESET}..."
-stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux starship ssh nvim mise kitty git bin bat btop nb aerospace
+stow --target=$HOME --adopt --verbose zsh zed yazi vscode tmux starship ssh nvim mise kitty git bin bat btop nb aerospace silicon
+
+setup_silicon
 
 echo -e "${GREEN}Installation and setup success${RESET}"
