@@ -7,6 +7,8 @@ go = "latest"
 node = "latest"
 rust = "latest"
 pnpm = "latest"
+python = "latest"
+pipx = "latest"
 
 [settings]
 experimental = true
