@@ -1,0 +1,84 @@
+# Start sketchybar-system-stats provider
+killall stats_provider 2>/dev/null
+stats_provider --cpu usage temperature --memory ram_usage ram_used --network en0 --interval 1 --no-units&
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance #####
+# Configuring the general appearance of the bar.
+# These are only some of the options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+
+sketchybar --bar position=top height=40 blur_radius=30 color=0xff333C43 margin=12 y_offset=12 sticky=on notch_width=0 corner_radius=10
+
+##### Changing Defaults #####
+# We now change some default values, which are applied to all further items.
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+default=(
+  padding_left=5
+  padding_right=5
+  icon.font="Maple Mono NF CN:Bold:14.0"
+  label.font="Maple Mono NF CN:Bold:12.0"
+  icon.color=0xffD3C6AA
+  label.color=0xffD3C6AA
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
+)
+sketchybar --default "${default[@]}"
+
+##### Adding Left Items #####
+# We add some regular items to the left side of the bar, where
+# only the properties deviating from the current defaults need to be set
+
+sketchybar --add item chevron left \
+           --set chevron icon= label.drawing=off \
+           --add item front_app left \
+           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" width=120 \
+           --subscribe front_app front_app_switched \
+           --add item spotify left \
+           --set spotify script="$PLUGIN_DIR/music.sh" width=200 \
+           --subscribe spotify mouse.clicked \
+
+
+sketchybar  --add item battery right \
+             --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+             --subscribe battery system_woke power_source_change \
+             --add item separator_6 right \
+             --set separator_6 icon="·" label.drawing=off icon.color=0xffE69875 \
+             --add item clock right \
+             --set clock script="$PLUGIN_DIR/clock.sh" update_freq=10 \
+             --subscribe clock mouse.clicked \
+             --add item separator_5 right \
+             --set separator_5 icon="·" label.drawing=off icon.color=0xffDBBC7F \
+             --add item bluetooth right \
+             --set bluetooth script="$PLUGIN_DIR/bluetooth.sh" \
+             --subscribe bluetooth system_woke mouse.clicked \
+             --add item separator_4 right \
+             --set separator_4 icon="·" label.drawing=off icon.color=0xffD699B6 \
+             --add item volume right \
+             --set volume script="$PLUGIN_DIR/volume.sh" \
+             --subscribe volume volume_change mouse.clicked \
+             --add item separator_3 right \
+             --set separator_3 icon="·" label.drawing=off icon.color=0xff83C092 \
+             --add item ram right \
+             --set ram script="$PLUGIN_DIR/ram.sh" \
+             --subscribe ram system_stats mouse.clicked \
+             --add item separator_2 right \
+             --set separator_2 icon="·" label.drawing=off icon.color=0xffD8A657 \
+             --add item cpu right \
+             --set cpu script="$PLUGIN_DIR/cpu.sh" width=60 \
+             --subscribe cpu system_stats mouse.clicked \
+             --add item separator_1 right \
+             --set separator_1 icon="·" label.drawing=off icon.color=0xffD3869B \
+             --add item network right \
+             --set network script="$PLUGIN_DIR/network.sh" width=100 \
+             --subscribe network system_stats mouse.clicked \
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update
