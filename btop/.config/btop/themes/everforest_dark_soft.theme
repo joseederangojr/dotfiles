@@ -1,0 +1,65 @@
+# Btop++ theme: Everforest Dark Soft
+
+# Main background
+main_bg = "#2d353b"
+main_fg = "#d3c6aa"
+title = "#d3c6aa"
+hi_fg = "#e69875"
+selected = "#475258"
+selected_fg = "#d3c6aa"
+inactive_fg = "#859289"
+
+# Graph colors
+graph_bg = "#2d353b"
+axis_lines = "#475258"
+graph_lines = "#a7c080"
+
+# CPU
+cpu_box = "#2d353b"
+cpu_fg = "#d3c6aa"
+cpu_br = "#a7c080"
+
+# Memory
+mem_box = "#2d353b"
+mem_fg = "#d3c6aa"
+mem_br = "#7fbbb3"
+
+# Network
+net_box = "#2d353b"
+net_fg = "#d3c6aa"
+net_br = "#d3c6aa"
+net_c_br = "#e69875"
+net_dl_br = "#a7c080"
+net_ul_br = "#e67e80"
+
+# Process
+proc_box = "#2d353b"
+proc_fg = "#d3c6aa"
+proc_br = "#7fbbb3"
+
+# Temperature
+temp_box = "#2d353b"
+temp_fg = "#d3c6aa"
+temp_br = "#e69875"
+
+# Battery
+bat_box = "#2d353b"
+bat_fg = "#d3c6aa"
+bat_br = "#a7c080"
+
+# Disk
+disk_box = "#2d353b"
+disk_fg = "#d3c6aa"
+disk_br = "#7fbbb3"
+
+# Miscellaneous
+div_line = "#475258"
+meter_bg = "#2d353b"
+proc_start = "#a7c080"
+proc_r = "#e67e80"
+proc_g = "#a7c080"
+proc_b = "#7fbbb3"
+
+# Warning and error colors
+warning = "#dbbc7f"
+critical = "#e67e80"

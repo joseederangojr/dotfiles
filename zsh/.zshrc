@@ -109,11 +109,11 @@ esac
 
 # Mise-en-place
 if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate bash)"
+  eval "$(mise activate zsh)"
 elif [ -f /usr/local/bin/mise ]; then
   eval "$(/usr/local/bin/mise activate zsh)"
 elif [ -f "$HOME/.local/bin/mise" ]; then
-  eval "$("$HOME/.local/bin/mise" activate bash)"
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
 fi
 
 
@@ -121,11 +121,11 @@ fi
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
---color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
---color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
---color=selected-bg:#45475A \
---color=border:#313244,label:#CDD6F4"
+--color=bg+:#3a464c,bg:#333c43,spinner:#d3c6aa,hl:#e67e80 \
+--color=fg:#d3c6aa,header:#e67e80,info:#7fbbb3,pointer:#d3c6aa \
+--color=marker:#83c092,fg+:#d3c6aa,prompt:#7fbbb3,hl+:#e67e80 \
+--color=selected-bg:#434f55 \
+--color=border:#3a464c,label:#d3c6aa"
 # CTRL-Y to copy the command into clipboard using pbcopy
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
