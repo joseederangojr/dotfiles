@@ -55,12 +55,33 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
+        defaults = {
+          -- Show hidden files but respect .gitignore
+          file_ignore_patterns = {
+            '.git/',
+            'node_modules/',
+            '.venv/',
+            '__pycache__/',
+            '.DS_Store',
+            '*.pyc',
+            '*.pyo',
+          },
+          hidden = true,
+          no_ignore = false, -- This respects .gitignore
+          respect_gitignore = true,
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = false, -- This respects .gitignore
+            respect_gitignore = true,
+          },
+          live_grep = {
+            hidden = true,
+            no_ignore = false, -- This respects .gitignore
+            respect_gitignore = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
