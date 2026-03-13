@@ -12,8 +12,15 @@
     },
     "playwright": {
       "type": "local",
-      "command": ["pnpm", "dlx", "@playwright/mcp@latest"],
+      "command": [
+        "pnpm",
+        "dlx",
+        "@playwright/mcp@latest"
+      ],
       "enabled": false
     }
-  }
+  },
+  "plugin": [
+    "oh-my-opencode"
+  ]
 }

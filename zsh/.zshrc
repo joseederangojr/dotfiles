@@ -213,3 +213,5 @@ bindkey "\el" forward-word
 bindkey "\eh" backward-word
 bindkey  "\eL" end-of-line
 bindkey "\eH" beginning-of-line 
+export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"

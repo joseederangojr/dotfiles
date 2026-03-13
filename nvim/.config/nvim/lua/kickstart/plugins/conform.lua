@@ -48,12 +48,14 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        php = { 'pint', 'php-cs-fixer', stop_after_first = true },
+        php = { 'php-cs-fixer', 'pint', stop_after_first = true },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'biome', 'prettierd', stop_after_first = true },
+        typescript = { 'biome', 'prettierd', stop_after_first = true },
+        json = { 'jq', 'prettierd', stop_after_first = true },
       },
       formatters = {
         biome = {
