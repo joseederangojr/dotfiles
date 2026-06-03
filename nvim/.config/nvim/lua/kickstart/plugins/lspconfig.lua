@@ -305,7 +305,6 @@ return {
             },
           },
         },
-        intelephense = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -320,6 +319,8 @@ return {
             },
           },
         },
+        -- phpantom is configured manually below (not in mason)
+        phpantom_lsp = {},
       }
 
       -- Ensure the servers and tools above are installed

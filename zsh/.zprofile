@@ -57,7 +57,7 @@ FZF_DEFAULT_OPTS_ARR=(
   --border=none
   --no-scrollbar
   --no-separator
-  --color='bw,fg:white,hl:regular:blue,fg+:regular,hl+:regular:blue,info:black:bold,prompt:black:bold,pointer:black:bold'
+  --color='bg:#0d1117,bg+:#161b22,border:#30363d,fg:#c9d1d9,fg+:#f0f6fc,header:#8b949e,hl:#58a6ff,hl+:#58a6ff,info:#8b949e,marker:#d29922,pointer:#d29922,prompt:#d29922,query:#c9d1d9,spinner:#d29922'
 )
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
@@ -71,3 +71,5 @@ export LESS='-cigRS -j4 -x4 -#5 -z-10'
 unset MAIL
 unset DEBUGINFOD_URLS
 
+# Composer
+export PATH="/Users/joseederangojr/.composer/vendor/bin:$PATH"

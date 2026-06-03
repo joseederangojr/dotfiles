@@ -27,4 +27,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Center after jumo up' })
 vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Fix line joins' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Center next highlight search' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Center previous highlight search' })
+vim.keymap.set('n', '<leader>bp', ':bp', { desc = '[B]uffer [P]revious' })
+vim.keymap.set('n', '<leader>bn', ':bn', { desc = '[B]uffer [N]ext' })
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,3 +1,6 @@
+[plugins]
+php = "https://github.com/verzly/mise-php#latest"
+
 [alias]
 
 [tools]
@@ -6,9 +9,26 @@ deno = "latest"
 go = "latest"
 node = "latest"
 rust = "latest"
-pnpm = "latest"
 python = "latest"
 pipx = "latest"
+pnpm = "latest"
+php = "latest"
+act = "latest"
+bat = "latest"
+direnv = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+jq = "latest"
+ripgrep = "latest"
+starship = "latest"
+zoxide = "latest"
+lsd = "latest"
+yq = "latest"
+minikube = "latest"
+sops = "latest"
+stern = "latest"
+rtk = "latest"
 
 [settings]
 experimental = true
@@ -19,3 +39,4 @@ _.path = [
     "{{config_root}}/node_modules/.bin",
     "{{config_root}}/vendor/bin",
 ]
+_.php = { pie_extensions = "redis/phpredis xdebug/xdebug" }

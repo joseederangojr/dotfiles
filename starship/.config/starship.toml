@@ -2,7 +2,7 @@
 
 # Sets user-defined palette
 # Palettes must be defined _after_ this line
-palette = "catppuccin_mocha"
+palette = "github_dark_colorblind"
 
 # Starship modules
 [character]
@@ -20,6 +20,34 @@ style = "bold lavender"
 read_only = " 󰌾"
 
 # Palette definitions
+[palettes.github_dark_colorblind]
+rosewater = "#ffc1ba"
+flamingo = "#ffa198"
+pink = "#f778ba"
+mauve = "#bc8cff"
+red = "#ec8e2c"
+maroon = "#ff7b72"
+peach = "#f0883e"
+yellow = "#d29922"
+green = "#58a6ff"
+teal = "#39c5cf"
+sky = "#79c0ff"
+sapphire = "#388bfd"
+blue = "#1f6feb"
+lavender = "#a371f7"
+text = "#c9d1d9"
+subtext1 = "#b1bac4"
+subtext0 = "#8b949e"
+overlay2 = "#6e7681"
+overlay1 = "#484f58"
+overlay0 = "#30363d"
+surface2 = "#21262d"
+surface1 = "#161b22"
+surface0 = "#0d1117"
+base = "#0d1117"
+mantle = "#010409"
+crust = "#010409"
+
 [palettes.catppuccin_latte]
 rosewater = "#dc8a78"
 flamingo = "#dd7878"

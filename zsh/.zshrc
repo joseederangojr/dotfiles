@@ -120,12 +120,6 @@ fi
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#3a464c,bg:#333c43,spinner:#d3c6aa,hl:#e67e80 \
---color=fg:#d3c6aa,header:#e67e80,info:#7fbbb3,pointer:#d3c6aa \
---color=marker:#83c092,fg+:#d3c6aa,prompt:#7fbbb3,hl+:#e67e80 \
---color=selected-bg:#434f55 \
---color=border:#3a464c,label:#d3c6aa"
 # CTRL-Y to copy the command into clipboard using pbcopy
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
@@ -212,6 +206,4 @@ bindkey '^ ' autosuggest-fetch
 bindkey "\el" forward-word
 bindkey "\eh" backward-word
 bindkey  "\eL" end-of-line
-bindkey "\eH" beginning-of-line 
-export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
+bindkey "\eH" beginning-of-line

@@ -8,9 +8,3 @@ macos_option_as_alt yes
 hide_window_decorations yes
 include themes/github_dark.conf
 map ctrl+cmd+l no_op
-
-
-# BEGIN_KITTY_THEME
-# GitHub Dark Colorblind
-include current-theme.conf
-# END_KITTY_THEME

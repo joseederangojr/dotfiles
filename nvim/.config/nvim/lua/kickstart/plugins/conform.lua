@@ -12,6 +12,7 @@ return {
             'prettierd',
             'biome',
             'stylua',
+            'easy-coding-standard',
           },
           automatic_installation = true,
           quiet_mode = true,
@@ -48,7 +49,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        php = { 'php-cs-fixer', 'pint', stop_after_first = true },
+        php = { 'pint', 'php-cs-fixer', stop_after_first = true },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -56,9 +57,16 @@ return {
         javascript = { 'biome', 'prettierd', stop_after_first = true },
         typescript = { 'biome', 'prettierd', stop_after_first = true },
         json = { 'jq', 'prettierd', stop_after_first = true },
+        html = { 'prettierd' },
       },
       formatters = {
+        pint = {
+          require_cwd = true,
+        },
         biome = {
+          require_cwd = true,
+        },
+        ['easy-conding-standard'] = {
           require_cwd = true,
         },
       },
