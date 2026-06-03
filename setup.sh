@@ -24,4 +24,7 @@ for dir in */; do
   stow --target="$HOME" --restow "$dir"
 done
 
+echo "==> Installing mise tools..."
+mise install 2>/dev/null || echo "    mise not found, skipping"
+
 echo "==> Done"
