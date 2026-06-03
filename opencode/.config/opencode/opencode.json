@@ -20,7 +20,4 @@
       "enabled": false
     }
   },
-  "plugin": [
-    "oh-my-opencode"
-  ]
 }
