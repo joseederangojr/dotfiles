@@ -100,7 +100,7 @@ zstyle ':completion:*' use-cache true
 # Config
 
 # Starship.rs
-eval "$(starship init zsh)"
+eval "$($HOME/.local/share/mise/installs/starship/latest/starship init zsh)"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
