@@ -3,3 +3,6 @@ ssh/.ssh/*_*
 zed/.config/zed/
 vscode/.vscode/
 !zed/.config/zed/*.json
+gnupg/.gnupg/*
+!gnupg/.gnupg/gpg-agent.conf
+

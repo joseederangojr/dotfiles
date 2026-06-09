@@ -1,4 +1,6 @@
-source $HOME/.profile
+if [ -f $HOME/.profile ]; then
+    source $HOME/.profile
+fi
 # Editor
 export EDITOR=nvim
 
@@ -23,7 +25,7 @@ export XDG_HOME_CONFIG="$HOME/.config"
 export ZSH_DIR=$HOME/.zsh
 export ZSH_COMPLETIONS_DIR="$ZSH_DIR/completions"
 export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
-export ZSH_OMZ=$HOME/.ohmyzsh
+export ZSH_OMZ=$HOME/.oh-my-zsh
 
 # Homebrew
 export HOMEBREW_PREFIX=$(brew --prefix)
@@ -72,4 +74,4 @@ unset MAIL
 unset DEBUGINFOD_URLS
 
 # Composer
-export PATH="/Users/joseederangojr/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"

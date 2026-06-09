@@ -29,6 +29,8 @@ minikube = "latest"
 sops = "latest"
 stern = "latest"
 rtk = "latest"
+mysql = "latest"
+redis = "latest"
 
 [settings]
 experimental = true

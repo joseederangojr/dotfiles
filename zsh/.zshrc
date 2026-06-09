@@ -2,16 +2,6 @@
 source $HOME/.zprofile
 source $ZSH_OMZ/oh-my-zsh.sh
 
-# functions
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
 # Aliases: ls
 alias l='eza -1A --group-directories-first --color=always --git-ignore'
 alias la='l -l --time-style="+%Y-%m-%d %H:%M" --no-permissions --octal-permissions'
