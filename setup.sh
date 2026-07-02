@@ -19,7 +19,7 @@ cd "$DOTFILES_DIR"
 for dir in */; do
   dir="${dir%/}"
   case "$dir" in
-    .git|bin) continue ;;
+    .git) continue ;;
   esac
   stow --target="$HOME" --adopt "$dir"
 done
@@ -42,5 +42,8 @@ echo "==> Installing ZSH"
 	git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_PLUGIN_DIR/zsh-autocomplete
     fi
     echo -e "==> zsh configured"
+
+echo "==> Installing TPM"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "==> Done"

@@ -2,6 +2,9 @@
 source $HOME/.zprofile
 source $ZSH_OMZ/oh-my-zsh.sh
 
+# Kubectl + Krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # Aliases: ls
 alias l='eza -1A --group-directories-first --color=always --git-ignore'
 alias la='l -l --time-style="+%Y-%m-%d %H:%M" --no-permissions --octal-permissions'

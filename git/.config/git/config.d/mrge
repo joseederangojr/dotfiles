@@ -1,6 +1,6 @@
 [user]
     email = jose.ederango@mrge.com 
-    signingkey = B7E97BC371C62016
+    signingkey = 4FF5A5BAB141F855
 
 [url "git@github.com:mrge-group/"]
     insteadOf = "mrge:"

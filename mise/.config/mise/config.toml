@@ -9,7 +9,7 @@ deno = "latest"
 go = "latest"
 node = "latest"
 rust = "latest"
-python = "latest"
+python = "3.14"
 pipx = "latest"
 pnpm = "latest"
 php = "latest"
@@ -31,6 +31,16 @@ stern = "latest"
 rtk = "latest"
 mysql = "latest"
 redis = "latest"
+nub = "latest"
+mago = "latest"
+"cargo:phpantom_lsp" = "latest"
+awscli = { version = "latest", symlink_bins = "true" }
+kubectl = "latest"
+awscli-local = { version = "latest", extras = "ver1" }
+aws-vault = "latest"
+colima = "latest"
+lima = "latest"
+docker-cli = "latest"
 
 [settings]
 experimental = true
@@ -41,4 +51,4 @@ _.path = [
     "{{config_root}}/node_modules/.bin",
     "{{config_root}}/vendor/bin",
 ]
-_.php = { pie_extensions = "redis/phpredis xdebug/xdebug" }
+_.php = { pie_extensions = "redis/phpredis xdebug/xdebug pecl/zip" }
