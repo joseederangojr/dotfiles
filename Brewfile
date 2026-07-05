@@ -24,7 +24,7 @@ brew "imagemagick"
 brew "mise"
 brew "nb"
 brew "neovim"
-brew "opencode"
+
 #brew "parallel"
 brew "pinentry"
 brew "pinentry-mac"

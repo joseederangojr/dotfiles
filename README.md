@@ -17,7 +17,7 @@ Personal dotfiles collection for macOS, featuring a Catppuccin Mocha theme throu
 - **nb**: Note-taking tool
 - **npm**: npm configuration
 - **nvim**: Neovim configuration
-- **opencode**: AI coding assistant configuration
+
 - **ssh**: SSH client configuration
 - **starship**: Shell prompt
 - **tmux**: Terminal multiplexer

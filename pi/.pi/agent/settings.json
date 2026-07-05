@@ -1,12 +1,14 @@
 {
   "lastChangelogVersion": "0.80.3",
-  "theme": "dark",
-  "defaultProvider": "opencode",
-  "defaultModel": "gpt-5-nano",
-  "defaultThinkingLevel": "medium",
+  "theme": "gh-dark",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5-mini",
+  "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "packages": [
     "npm:pi-caveman",
-    "npm:pi-rtk-optimizer"
+    "npm:pi-rtk-optimizer",
+    "npm:pi-gh-dark-theme",
+    "npm:@barlevalon/caveman-commit-skill"
   ]
 }
