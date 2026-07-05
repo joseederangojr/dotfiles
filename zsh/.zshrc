@@ -1,6 +1,12 @@
-# oh-my-zsh
 source $HOME/.zprofile
-source $ZSH_OMZ/oh-my-zsh.sh
+
+# Bash completion support (needed for aws_completer)
+autoload -U +X bashcompinit && bashcompinit
+
+# Completion defaults (replaces oh-my-zsh completion lib)
+setopt auto_menu         # show completion menu on successive tab press
+setopt always_to_end
+zstyle ':completion:*' special-dirs true
 
 # Kubectl + Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -44,7 +50,7 @@ q() {
 
 # Aliases: Zsh Reload
 
-alias reload="source $HOME/.zshrc"
+alias reload="exec zsh"
 
 # Aliases: Editor
 alias vim=nvim
@@ -58,15 +64,14 @@ alias k=kubectl
 alias x=clear
 
 HISTFILE=$HOME/.zsh_history # location of the history file
-HISTFILESIZE=1000000000 # history limit of the file on disk
-HISTSIZE=1000000000 # current session's history limit
-SAVEHIST=500000 # zsh saves this many lines from the in-memory history list to the history file upon shell exit
+HISTFILESIZE=100000  # history limit of the file on disk
+HISTSIZE=100000      # current session's history limit
+SAVEHIST=50000       # zsh saves this many lines from the in-memory history list to the history file upon shell exit
 HISTTIMEFORMAT="%d/%m/%Y %H:%M] "
 
 setopt INC_APPEND_HISTORY # history file is updated immediately after a command is entered
 setopt SHARE_HISTORY # allows multiple Zsh sessions to share the same command history 
 setopt EXTENDED_HISTORY # records the time when each command was executed along with the command itself
-setopt APPENDHISTORY # ensures that each command entered in the current session is appended to the history file immediately after execution
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
 setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
 setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
@@ -77,12 +82,15 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 # Zsh auto completions
 fpath=($ZSH_PLUGIN_DIR/zsh-completions/src $fpath $ZSH_COMPLETIONS_DIR $HOMEBREW_PREFIX/share/zsh/site-functions)
 source $ZSH_PLUGIN_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# Reduce completion lag — wait briefly before triggering autocomplete
+zstyle ':autocomplete:*' delay 0.2
+zstyle ':autocomplete:*' timeout 1.0
+
 complete -C aws_completer aws
 
-# _complete is base completer
-# _approximate will fix completion if there is no matches
-# _extensions will complete glob patters with extensions
-zstyle ':completion:*' completer _extensions _complete _approximate
+# _extensions completes glob patterns, _complete is the standard completer
+zstyle ':completion:*' completer _extensions _complete
 
 zstyle ':completion:*' menu select  # menu with selection
 zstyle ':completion:*' increment yes
@@ -157,7 +165,7 @@ eval "$(direnv hook zsh)"
 source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
 # ZSH Plugin: Syntax Highlighting

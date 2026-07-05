@@ -12,7 +12,7 @@ export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 
 # Starship
-export STARSHIP_CACHE=~/.config/starship/cache
+export STARSHIP_CACHE="$HOME/.config/starship/cache"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 # pnpm
@@ -28,8 +28,7 @@ export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
 export ZSH_OMZ=$HOME/.oh-my-zsh
 
 # Homebrew
-export HOMEBREW_PREFIX=$(brew --prefix)
-export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW_PREFIX/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+export HOMEBREW_PREFIX=/opt/homebrew
 
 # Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

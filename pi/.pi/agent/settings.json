@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.80.3",
   "theme": "gh-dark",
-  "defaultProvider": "github-copilot",
-  "defaultModel": "gpt-5-mini",
+  "defaultProvider": "opencode",
+  "defaultModel": "deepseek-v4-flash-free",
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "packages": [
