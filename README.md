@@ -23,7 +23,7 @@ Personal dotfiles collection for macOS, featuring a Catppuccin Mocha theme throu
 - **tmux**: Terminal multiplexer
 - **vscode**: VS Code settings and keybindings
 - **zed**: Zed editor settings
-- **zsh**: Zsh shell config with Oh My Zsh, plugins, and aliases
+- **zsh**: Zsh shell config with plugins and aliases
 
 ## Installation
 

@@ -3,7 +3,7 @@ source $HOME/.zprofile
 # Bash completion support (needed for aws_completer)
 autoload -U +X bashcompinit && bashcompinit
 
-# Completion defaults (replaces oh-my-zsh completion lib)
+# Completion defaults
 setopt auto_menu         # show completion menu on successive tab press
 setopt always_to_end
 zstyle ':completion:*' special-dirs true

@@ -27,10 +27,7 @@ done
 echo "==> Installing mise tools..."
 mise install 2>/dev/null || echo "    mise not found, skipping"
 
-echo "==> Installing ZSH"
-   if [ ! -d $HOME/.oh-my-zsh ]; then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    fi
+echo "==> Installing ZSH plugins"
     ZSH_DIR=$HOME/.zsh
     ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
     if [ ! -d $ZSH_DIR ]; then

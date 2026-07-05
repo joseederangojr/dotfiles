@@ -25,7 +25,6 @@ export XDG_HOME_CONFIG="$HOME/.config"
 export ZSH_DIR=$HOME/.zsh
 export ZSH_COMPLETIONS_DIR="$ZSH_DIR/completions"
 export ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
-export ZSH_OMZ=$HOME/.oh-my-zsh
 
 # Homebrew
 export HOMEBREW_PREFIX=/opt/homebrew
