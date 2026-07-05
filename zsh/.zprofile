@@ -13,13 +13,13 @@ export PATH="$PATH:$GOPATH/bin"
 
 # Starship
 export STARSHIP_CACHE="$HOME/.config/starship/cache"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 
 # xdg
-export XDG_HOME_CONFIG="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # zsh
 export ZSH_DIR=$HOME/.zsh
@@ -61,8 +61,6 @@ FZF_DEFAULT_OPTS_ARR=(
 )
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"
-
-# Colima
 
 # Settings: less
 export LESS='-cigRS -j4 -x4 -#5 -z-10'

@@ -73,7 +73,6 @@ setopt INC_APPEND_HISTORY # history file is updated immediately after a command 
 setopt SHARE_HISTORY # allows multiple Zsh sessions to share the same command history 
 setopt EXTENDED_HISTORY # records the time when each command was executed along with the command itself
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
 setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
 setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
@@ -166,7 +165,6 @@ source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'
 ZSH_AUTOSUGGEST_STRATEGY=(history)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
 
 # ZSH Plugin: Syntax Highlighting
 source $ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
