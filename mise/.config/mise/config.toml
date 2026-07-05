@@ -41,6 +41,8 @@ aws-vault = "latest"
 colima = "latest"
 lima = "latest"
 docker-cli = "latest"
+localstack = "latest"
+pi = "latest"
 
 [settings]
 experimental = true

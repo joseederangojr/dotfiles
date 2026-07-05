@@ -36,7 +36,17 @@ alias pn='pnpm'
 # Aliases: cat
 
 
+# Aliases: pi (q) for OpenCode Zen
+q() {
+  local MODEL="${ASK_MODEL:-gpt-5-nano}"
+  local THINK_LEVEL="${THINK_LEVEL:-high}"
+  local prompt="$*"
+  local PROVIDER="opencode"
+  pi --provider "$PROVIDER" --model "$MODEL" --thinking "$THINK_LEVEL" -p "$prompt"
+}
+
 # Aliases: Zsh Reload
+
 alias reload="source $HOME/.zshrc"
 
 # Aliases: Editor
