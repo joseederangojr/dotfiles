@@ -38,11 +38,8 @@ alias pn='pnpm'
 
 # Aliases: pi (q)
 q() {
-  local MODEL="${ASK_MODEL:-gpt-5-nano}"
-  local THINK_LEVEL="${THINK_LEVEL:-high}"
   local prompt="$*"
-  local PROVIDER="pi"
-  pi --provider "$PROVIDER" --model "$MODEL" --thinking "$THINK_LEVEL" -p "$prompt"
+  pi -p "$prompt"
 }
 
 # Aliases: Zsh Reload
