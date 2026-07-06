@@ -1,7 +1,10 @@
 source $HOME/.zprofile
 
-# Bash completion support (needed for aws_completer)
-autoload -U +X bashcompinit && bashcompinit
+# Native zsh completion (basic)
+# Include custom completions + zsh-completions plugin
+fpath=("$ZSH_PLUGIN_DIR/zsh-completions/src" "$ZSH_COMPLETIONS_DIR" $fpath)
+autoload -Uz compinit
+compinit
 
 # Completion defaults
 setopt auto_menu         # show completion menu on successive tab press
@@ -78,31 +81,9 @@ setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded
 setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 
-# Zsh auto completions
-fpath=($ZSH_PLUGIN_DIR/zsh-completions/src $fpath $ZSH_COMPLETIONS_DIR $HOMEBREW_PREFIX/share/zsh/site-functions)
+# Completion plugins
+# zsh-completions loaded via fpath above
 source $ZSH_PLUGIN_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
-# Reduce completion lag — wait briefly before triggering autocomplete
-zstyle ':autocomplete:*' delay 0.2
-zstyle ':autocomplete:*' timeout 1.0
-
-complete -C aws_completer aws
-
-# _extensions completes glob patterns, _complete is the standard completer
-zstyle ':completion:*' completer _extensions _complete
-
-zstyle ':completion:*' menu select  # menu with selection
-zstyle ':completion:*' increment yes
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' squeeze-slashes yes  # replace // with /
-
-zstyle ':completion:*' file-sort modification  # show recently used files first
-zstyle ':completion:*' list-dirs-first yes
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"  # colored files and directories, blue selection box
-zstyle ':completion:*' ignored-patterns '.git'
-
-zstyle ':completion:*' rehash false  # improves performance
-zstyle ':completion:*' use-cache true
 
 # Config
 
@@ -144,7 +125,7 @@ export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'eza --tree --color=always {}'"
 
-source <(fzf --zsh)
+# source <(fzf --zsh)  # disabled to keep native completion only
 
 # Zoxide
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --select-1 --exit-0"
@@ -163,7 +144,7 @@ eval "$(direnv hook zsh)"
 # ZSH Plugin: Auto autosuggestions 
 source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#606090'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6e7681'
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 # ZSH Plugin: Syntax Highlighting
@@ -172,40 +153,42 @@ source $ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_MAXLENGTH=120
 
-# Rainbow brackets in special order, easier for eyes
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=green'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[bracket-level-6]='fg=red'
+# GitHub Dark Colorblind-ish palette
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#79c0ff'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#e3b341'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#a5d6ff'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#ffa657'
+ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=#d2a8ff'
+ZSH_HIGHLIGHT_STYLES[bracket-level-6]='fg=#7ee787'
 
 # Custom styles
 # Errors
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red,underline'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#ff7b72,underline'
 
 # Keywords
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#79c0ff'
 
 # Commands
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[global-alias]='fg=magenta'
-ZSH_HIGHLIGHT_STYLES[arg0]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#79c0ff'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#ffa657'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=#ffa657'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#ffa657,bold'
 
 # Strings
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=green'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=green'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#a5d6ff'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#a5d6ff'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e3b341'
 
 # Redirections
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#8b949e'
 
 # Paths
-ZSH_HIGHLIGHT_STYLES[path]='none'
-
+ZSH_HIGHLIGHT_STYLES[path]='fg=#c9d1d9'
 
 # keyboard
+# Force emacs keymap (disable vi normal mode in zsh line editor)
+bindkey -e
+
 bindkey -s ^f "$HOME/.local/bin/tmux-sessionizer\n"
 bindkey ^y autosuggest-accept
 bindkey '^ ' autosuggest-fetch
