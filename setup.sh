@@ -19,13 +19,14 @@ cd "$DOTFILES_DIR"
 for dir in */; do
   dir="${dir%/}"
   case "$dir" in
-    .git) continue ;;
+    .git|docs) continue ;;
   esac
   stow --target="$HOME" --adopt "$dir"
 done
 
 echo "==> Installing mise tools..."
 mise install 2>/dev/null || echo "    mise not found, skipping"
+echo "    nushell + carapace managed by mise (parallel mode: run 'nu')"
 
 echo "==> Installing ZSH plugins"
     ZSH_DIR=$HOME/.zsh

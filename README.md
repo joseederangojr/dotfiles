@@ -17,13 +17,18 @@ Personal dotfiles collection for macOS, featuring a Catppuccin Mocha theme throu
 - **nb**: Note-taking tool
 - **npm**: npm configuration
 - **nvim**: Neovim configuration
-
+- **nushell**: Nushell config (parallel migration from zsh)
 - **ssh**: SSH client configuration
 - **starship**: Shell prompt
 - **tmux**: Terminal multiplexer
 - **vscode**: VS Code settings and keybindings
 - **zed**: Zed editor settings
 - **zsh**: Zsh shell config with plugins and aliases
+
+## Shell migration
+
+- Parallel zsh -> nushell guide: [docs/zsh-to-nushell.md](./docs/zsh-to-nushell.md)
+- Nushell tools installed via `mise install`
 
 ## Installation
 
