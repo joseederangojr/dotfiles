@@ -2,7 +2,35 @@
 
 # Sets user-defined palette
 # Palettes must be defined _after_ this line
-palette = "github_dark_colorblind"
+palette = "everforest"
+
+[palettes.everforest]
+rosewater = "#e69875"
+flamingo = "#e67e80"
+pink = "#e67e80"
+mauve = "#7fbbb3"
+red = "#e67e80"
+maroon = "#e67e80"
+peach = "#dbbc7f"
+yellow = "#d29922"
+green = "#a7c080"
+teal = "#7fbbb3"
+sky = "#7fbbb3"
+sapphire = "#a7c080"
+blue = "#7fbbb3"
+lavender = "#a7c080"
+text = "#d3c6aa"
+subtext1 = "#859289"
+subtext0 = "#475258"
+overlay2 = "#475258"
+overlay1 = "#30363d"
+overlay0 = "#232a2f"
+surface2 = "#2d353b"
+surface1 = "#232a2f"
+surface0 = "#161b22"
+base = "#2d353b"
+mantle = "#232a2f"
+crust = "#161b22"
 
 # Starship modules
 [character]

@@ -7,3 +7,6 @@ oze/
 devbox.json
 devbox.d
 devbox.lock
+.gitignore.local
+mago.toml
+.phpantom.toml

@@ -31,6 +31,7 @@ return {
         opts = {},
       },
       'folke/lazydev.nvim',
+      'kristijanhusak/vim-dadbod-completion',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -76,9 +77,19 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          omni = {
+            name = 'Omni',
+            module = 'blink.cmp.sources.complete_func',
+            score_offset = 100,
+          },
+        },
+        per_filetype = {
+          sql = { 'omni', 'buffer' },
+          mysql = { 'omni', 'buffer' },
+          plsql = { 'omni', 'buffer' },
         },
       },
 
@@ -96,6 +107,10 @@ return {
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
     },
+  },
+  {
+    'kristijanhusak/vim-dadbod-completion',
+    ft = { 'sql', 'mysql', 'plsql' },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et

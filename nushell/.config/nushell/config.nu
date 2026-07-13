@@ -87,7 +87,7 @@ alias kgp = kubectl get pods
 alias kc = kubectl config
 alias kcx = kubectl config set-context
 alias rg = rg --hidden --smart-case --glob '!.git/' --no-search-zip --trim --colors line:fg:black --colors line:style:bold --colors path:fg:magenta --colors match:style:nobold
-alias sup = pi -p
+alias sup = pi --no-session -p
 
 # Keybindings
 $env.config.keybindings = ($env.config.keybindings ++ [

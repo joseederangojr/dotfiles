@@ -319,11 +319,29 @@ return {
             },
           },
         },
-        -- phpantom
-        -- phpantom_lsp = {},
-        intelephense = {},
+        -- php
+        phpantom_lsp = {
+          cmd = { 'phpantom_lsp' }, -- adjust if your binary name differs
+          filetypes = { 'php' },
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern('composer.json', '.git')(fname)
+          end,
+          on_attach = function(client, bufnr)
+            client.server_capabilities.workspaceSymbolProvider = false
+            client.resolved_capabilities.workspace_symbol = false
+          end,
+        },
+        -- intelephense handles workspace symbols
+        intelephense = {
+          filetypes = { 'php' },
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern('composer.json', '.git')(fname)
+          end,
+        },
         -- typescript
         tsgo = {},
+        -- typespec
+        tsp_server = {},
       }
 
       -- Ensure the servers and tools above are installed

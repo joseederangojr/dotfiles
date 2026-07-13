@@ -27,10 +27,6 @@ return {
     },
   },
   keys = {
-    {
-      '<leader>d',
-      desc = '+[D]ebugger',
-    },
     -- Basic debugging keymaps, feel free to change to your liking!
     {
       '<leader>d<CR>',

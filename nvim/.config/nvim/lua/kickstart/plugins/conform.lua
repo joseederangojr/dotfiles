@@ -27,12 +27,11 @@ return {
         function()
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
-        mode = '',
+        mode = 'n',
         desc = '[B]uffer [F]ormat',
       },
     },
     opts = {
-      notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
@@ -50,13 +49,9 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         php = { 'pint', 'php-cs-fixer', stop_after_first = true },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'biome', 'prettierd', stop_after_first = true },
         typescript = { 'biome', 'prettierd', stop_after_first = true },
-        json = { 'jq', 'prettierd', stop_after_first = true },
+        json = { 'prettierd', stop_after_first = true },
         html = { 'prettierd' },
       },
       formatters = {
@@ -66,7 +61,7 @@ return {
         biome = {
           require_cwd = true,
         },
-        ['easy-conding-standard'] = {
+        ['easy-coding-standard'] = {
           require_cwd = true,
         },
       },

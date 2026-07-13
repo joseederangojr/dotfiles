@@ -57,7 +57,7 @@ FZF_DEFAULT_OPTS_ARR=(
   --border=none
   --no-scrollbar
   --no-separator
-  --color='bg:#0d1117,bg+:#161b22,border:#30363d,fg:#c9d1d9,fg+:#f0f6fc,header:#8b949e,hl:#58a6ff,hl+:#58a6ff,info:#8b949e,marker:#d29922,pointer:#d29922,prompt:#d29922,query:#c9d1d9,spinner:#d29922'
+  --color='bg:#232a2f,bg+:#2d353b,border:#475258,fg:#d3c6aa,fg+:#ffffff,header:#859289,hl:#a7c080,hl+:#a7c080,info:#859289,marker:#dbbc7f,pointer:#dbbc7f,prompt:#dbbc7f,query:#d3c6aa,spinner:#dbbc7f'
 )
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS_ARR"

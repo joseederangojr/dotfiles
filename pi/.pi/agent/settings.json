@@ -1,14 +1,11 @@
 {
   "lastChangelogVersion": "0.80.3",
   "theme": "light/dark",
-  "defaultProvider": "opencode",
-  "defaultModel": "gpt-5-codex",
-  "defaultThinkingLevel": "high",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.4-mini",
+  "defaultThinkingLevel": "xhigh",
   "hideThinkingBlock": true,
   "packages": [
-    "npm:pi-caveman",
-    "npm:pi-mcp-adapter",
-    "npm:pi-lens",
-    "npm:@anton-kochev/answer"
+    "npm:pi-caveman"
   ]
 }

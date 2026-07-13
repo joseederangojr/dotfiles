@@ -2,6 +2,14 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'sql', 'mysql', 'plsql' },
+  callback = function()
+    vim.bo.omnifunc = 'vim_dadbod_completion#omni'
+  end,
+})
+
 return {
   {
     'dstein64/vim-startuptime',

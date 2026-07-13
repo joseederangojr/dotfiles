@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles collection for macOS, featuring a Catppuccin Mocha theme throughout.
+Personal dotfiles collection for macOS, featuring an Everforest theme throughout.
 
 ## Configurations
 
@@ -12,7 +12,7 @@ Personal dotfiles collection for macOS, featuring a Catppuccin Mocha theme throu
 - **git**: Git configuration with aliases, templates, and ignore rules
 - **gnupg**: GPG agent configuration
 - **gtk**: GTK theme settings
-- **kitty**: Terminal emulator with Catppuccin themes
+- **kitty**: Terminal emulator with Everforest theme
 - **mise**: Development tools version manager
 - **nb**: Note-taking tool
 - **npm**: npm configuration
@@ -60,5 +60,5 @@ See [Brewfile](./Brewfile) for the full list of macOS packages, casks, and fonts
 ## Notes
 
 - Configs are tailored to personal preferences.
-- Catppuccin Mocha theme used throughout.
+- Everforest theme used throughout.
 - For issues or suggestions, open a GitHub issue.

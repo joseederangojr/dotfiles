@@ -1,15 +1,12 @@
 return {
   {
-    'projekt0n/github-nvim-theme',
+    'sainnhe/everforest',
     lazy = false,
     priority = 1000,
     config = function()
-      require('github-theme').setup({
-        options = {
-          transparent = false,
-        },
-      })
-      vim.cmd.colorscheme 'github_dark_colorblind'
+      vim.o.termguicolors = true
+      vim.g.everforest_background = 'medium'
+      vim.cmd.colorscheme 'everforest'
     end,
   },
 }
